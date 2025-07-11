@@ -1,0 +1,4 @@
+elasticsearch==9.0.2
+sentence-transformers==3.0.0
+pandas==2.2.3
+python-dotenv==1.0.0

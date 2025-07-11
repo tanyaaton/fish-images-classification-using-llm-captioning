@@ -1,0 +1,6 @@
+PROJECT_ID=
+WATSONX_APIKEY=
+IAM_IBM_CLOUD_URL=iam.cloud.ibm.com
+IBM_WATSONX_AI_INFERENCE_URL=https://us-south.ml.cloud.ibm.com/ml/v1/text/chat?version=2023-05-29
+ELASTIC_URL=
+ELASTIC_APIKEY=
