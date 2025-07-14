@@ -9,7 +9,7 @@ index_name = 'thai_fish_descriptions'
 # ingest_df_to_elasticsearch(df, index_name)
 
 #--------captioning and querying-------------------
-image_path = "app/fish-pictures/fish-2.jpg"
+image_path = "app/fish-random/fish-2.jpg"
 pic_string = convert_image_to_base64(image_path)
 caption = get_fish_description_from_watsonxai(pic_string)
 
