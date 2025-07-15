@@ -16,7 +16,13 @@ def search():
         text_input = data.get("text", "")
 
         # Simulate a search result as a placeholder
-        results = [f"Predicted Fish {i+1}" for i in range(5)]
+        results = [
+            {"fish_id": 1, "accuracy": 0.95},
+            {"fish_id": 2, "accuracy": 0.90},
+            {"fish_id": 3, "accuracy": 0.85},
+            {"fish_id": 4, "accuracy": 0.80},
+            {"fish_id": 5, "accuracy": 0.75}
+        ]
 
         return jsonify({"input": text_input, "results": results})
     except Exception as e:
