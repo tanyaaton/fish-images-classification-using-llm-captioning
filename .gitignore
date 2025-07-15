@@ -5,3 +5,6 @@ __pycache__
 venv/
 cert.pem
 data.json
+fish_images/
+**-env
+app/
