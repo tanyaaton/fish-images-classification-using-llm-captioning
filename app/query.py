@@ -6,12 +6,27 @@ load_dotenv()
 
 
 # --------------- change to tech zone connection ----------------
-elastic_url = os.getenv("ELASTIC_URL", None)
-elastic_api_key = os.getenv("ELASTIC_APIKEY", None)
+# elastic_url = os.getenv("ELASTIC_URL", None)
+# elastic_api_key = os.getenv("ELASTIC_APIKEY", None)
+
+es_endpoint = os.environ["es_endpoint"]
+es_cert_path = os.environ["es_cert_path"]
+es_username = os.environ["es_username"]
+es_password = os.environ["es_password"]
+
+print("es_endpoint:", es_endpoint)
+print("es_cert_path:", es_cert_path)
+print("es_username:", es_username)
+print("es_password:", es_password)
+# es = Elasticsearch(
+#     elastic_url,
+#     api_key=elastic_api_key
+# )
 
 es = Elasticsearch(
-    elastic_url,
-    api_key=elastic_api_key
+    [es_endpoint],
+    http_auth=(es_username, es_password),
+    verify_certs=es_cert_path
 )
 # ----------------------------------------------------------------
 

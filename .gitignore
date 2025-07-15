@@ -4,3 +4,5 @@ __pycache__
 .DS_Store
 cert.pem
 data.json
+fish_images/
+**-env
