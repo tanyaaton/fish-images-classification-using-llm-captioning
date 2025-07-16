@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-from INGESTION.captioning import convert_image_to_base64
+from BE.captioning import convert_image_to_base64
 # get_fish_description_from_watsonxai
 from query import semantic_text_search_fish_description, return_top_n_fish
 from ings import ingest_df_to_elasticsearch
