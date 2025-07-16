@@ -7,12 +7,21 @@ from elasticsearch.helpers import bulk
 load_dotenv()
 
 # --------------- change to tech zone connection ----------------
-elastic_url = os.getenv("ELASTIC_URL", None)
-elastic_api_key = os.getenv("ELASTIC_APIKEY", None)
+
+es_endpoint = os.environ["es_endpoint"]
+es_cert_path = os.environ["es_cert_path"]
+es_username = os.environ["es_username"]
+es_password = os.environ["es_password"]
+
+print("es_endpoint:", es_endpoint)
+print("es_cert_path:", es_cert_path)
+print("es_username:", es_username)
+print("es_password:", es_password)
 
 es = Elasticsearch(
-    elastic_url,
-    api_key=elastic_api_key
+    [es_endpoint],
+    http_auth=(es_username, es_password),
+    verify_certs=False
 )
 # ----------------------------------------------------------------
 
@@ -47,6 +56,7 @@ def create_index_name(index_name):
 
 
 def ingest_df_to_elasticsearch(df, index_name):
+    print("creating index name...")
     index_name = create_index_name(index_name)
 
     # Prepare bulk actions
@@ -61,8 +71,11 @@ def ingest_df_to_elasticsearch(df, index_name):
         }
         for _, row in df.iterrows()
     ]
+    print("finish actions...")  # Debugging line to check actions
 
     # Upload to Elasticsearch
+
+    print(actions)
     success, errors = bulk(es, actions)
     print(f"Success: {success}, Errors: {errors}")
 

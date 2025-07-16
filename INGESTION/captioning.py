@@ -6,7 +6,6 @@ import json
 import requests
 import pandas as pd
 
-
 load_dotenv()
 
 watsonx_api_key = os.getenv("WATSONX_APIKEY", None)
@@ -14,8 +13,6 @@ ibm_cloud_url = os.getenv("IBM_CLOUD_URL", None)
 project_id = os.getenv("PROJECT_ID", None)
 ibm_cloud_iam_url = os.getenv("IAM_IBM_CLOUD_URL", None)
 chat_url = os.getenv("IBM_WATSONX_AI_INFERENCE_URL", None)
-
-print('opppppppppppp')
 
 conn_ibm_cloud_iam = http.client.HTTPSConnection(ibm_cloud_iam_url)
 payload = "grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey&apikey="+watsonx_api_key
@@ -27,9 +24,9 @@ decoded_json=json.loads(data.decode("utf-8"))
 access_token=decoded_json["access_token"]
 
 
-print('hhhhhhh')
+
 ### input and descripe input image
-# image_path = "fish-pictures/fish-1.png"
+image_path = "fish-pictures/fish-1.png"
 
 def convert_image_to_base64(image_path):
     pic = open(image_path,"rb").read()
@@ -95,7 +92,6 @@ def get_fish_description_from_watsonxai(pic_string):
         headers=headers,
         json=body
     )
-    print('jjjjjjjjjjjjjj')
 
     if response.status_code != 200:
         raise Exception("Non-200 response: " + str(response.text))
