@@ -2,6 +2,7 @@ import pandas as pd
 from elasticsearch import Elasticsearch
 from dotenv import load_dotenv
 from elasticsearch.helpers import bulk
+import os
 
 class ElasticsearchManager:
     def __init__(self, es_endpoint, es_username, es_password):
@@ -22,10 +23,10 @@ class ElasticsearchManager:
                         "image_links": {
                             "type": "text"
                         },
-                        # "embedding": {
-                        #     "type": "dense_vector",
-                        #     "dims": 768  # Adjust the dimension based on your model's output
-                        # }
+                        "embedding": {
+                            "type": "dense_vector",
+                            "dims": 1024  # Adjust the dimension based on your model's output
+                        }
                     }
                 }
 
@@ -104,7 +105,8 @@ class ElasticsearchManager:
                 "_source": {
                     "fish_name": row["Fish Name"],
                     "general_description": row["Summary Description"],
-                    "image_links": row["Image Links"]
+                    "image_links": row["Image Links"],
+                    "embedding": row["embedding"]
                 }
             }
             for _, row in df.iterrows()

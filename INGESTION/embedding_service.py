@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 class EmbeddingService:
     def __init__(self, embedding_type: str = "watsonx", model_name: str = None):
         self.embedding_type = embedding_type.lower()
-        
+        print(f"Using embedding type: {self.embedding_type}")
         if self.embedding_type == "sentence_transformer":
             self.model = SentenceTransformer(model_name or 'Snowflake/snowflake-arctic-embed-l-v2.0')
         elif self.embedding_type == "watsonx":
@@ -21,6 +21,7 @@ class EmbeddingService:
     
     def embed_text(self, sentences: Union[str, List[str]]):
         single_input = isinstance(sentences, str)
+        print(f"Embedding input: {sentences}")
         if single_input:
             sentences = [sentences]
         
