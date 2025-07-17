@@ -7,42 +7,62 @@ import os
 class ElasticsearchManager:
     def __init__(self, es_endpoint, es_username, es_password):
         self.es = Elasticsearch(
-    [es_endpoint],
-    http_auth=(es_username, es_password),
-    verify_certs=False
-)
-    
-    mappings = {
+        [es_endpoint],
+        http_auth=(es_username, es_password),
+        verify_certs=False
+    )
+        
+        self.mappings = {
+                        "properties": {
+                            "fish_name": {
+                                "type": "text"
+                            },
+                            "general_description": {
+                                "type": "semantic_text"
+                            },
+                            "image_links": {
+                                "type": "text"
+                            },
+                            "embedding": {
+                                "type": "dense_vector",
+                                "dims": 1024,  # Adjust the dimension based on your model's output
+                                "similarity": "cosine"
+                            }
+                        }
+                    }
+
+    def create_index(self, index_name):
+        if not self.es.indices.exists(index=index_name):
+            print(f"Creating index '{index_name}'...")
+
+            mappings = {
+                "mappings": {
                     "properties": {
                         "fish_name": {
                             "type": "text"
                         },
                         "general_description": {
-                            "type": "semantic_text"
+                            "type": "text"  # 'semantic_text' is not valid; use 'text'
                         },
                         "image_links": {
                             "type": "text"
                         },
                         "embedding": {
                             "type": "dense_vector",
-                            "dims": 1024  # Adjust the dimension based on your model's output
+                            "dims": 1024,  # Adjust the dimension based on your model's output
+                            "similarity": "cosine",
+                            "index": True  # Set to True + additional settings for ANN search
                         }
                     }
                 }
+            }
 
-    def create_index(self, index_name, mapping=mappings):
-        if not self.es.indices.exists(index=index_name):
-            print(f"Index '{index_name}' already exists.")
+            response = self.es.indices.create(index=index_name, body=mappings)
+            print(response)
+            print(f"Index '{index_name}' created.")
         else:
-            try:
-                if mapping:
-                    response = self.es.indices.create(index=index_name, body=mapping)
-                else:
-                    response = self.es.indices.create(index=index_name)
-                print(f"✓ Index '{index_name}' created successfully")
-                return response
-            except Exception as e:
-                print(f"✗ Error creating index: {e}")
+            print(f"Index '{index_name}' already exists.")
+        return index_name
 
     def delete_index(self, index_name):
         try:
@@ -52,7 +72,7 @@ class ElasticsearchManager:
         except Exception as e:
             print(f"✗ Error deleting index: {e}")
     
-    def list_indices(self, creator="user"):
+    def list_all_index(self, creator="user"):
         """
         Args:
             creator (str):
@@ -95,9 +115,9 @@ class ElasticsearchManager:
             return 0
 
     def ingest_df_to_elasticsearch(self, df, index_name):
-        print("creating index name...")
+        print('creating index...')
         self.create_index(index_name)
-
+        print("Ingesting DataFrame to Elasticsearch...")
         # Prepare bulk actions
         actions = [
             {
@@ -118,4 +138,29 @@ class ElasticsearchManager:
         # print(actions)
         success, errors = bulk(self.es, actions)
         print(f"Success: {success}, Errors: {errors}")
+
+    def get_index_info(self, index_name):
+        try:
+            if not self.es.indices.exists(index=index_name):
+                print(f"❌ Index '{index_name}' not found")
+                return None
+            
+            # Get mapping and count
+            mapping = self.es.indices.get_mapping(index=index_name)[index_name]['mappings']
+            count = self.es.count(index=index_name)['count']
+            
+            # Get sample document
+            sample = self.es.search(index=index_name, body={"size": 1})
+            sample_doc = sample['hits']['hits'][0]['_source'] if sample['hits']['hits'] else {}
+            
+            print(f"📊 {index_name}: {count} rows")
+            print("Columns:")
+            for field, value in sample_doc.items():
+                field_type = type(value).__name__
+                print(f"  {field}: {field_type}")
+            
+            return {'rows': count, 'columns': list(sample_doc.keys()), 'sample': sample_doc}
+            
+        except Exception as e:
+            print(f"✗ Info error: {e}")
 

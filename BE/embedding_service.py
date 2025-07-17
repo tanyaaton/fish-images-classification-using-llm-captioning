@@ -4,6 +4,8 @@ from typing import List, Union
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 
+load_dotenv()
+
 
 class EmbeddingService:
     def __init__(self, embedding_type: str = "watsonx", model_name: str = None):
@@ -27,8 +29,8 @@ class EmbeddingService:
         
         if self.embedding_type == "sentence_transformer":
             embeddings = self.model.encode(sentences)
+            return embeddings
         else:  # watsonx
-            print("Using WatsonX for embedding...")
             embeddings = []
             for sentence in sentences:
                 response = requests.post(self.emb_url, json={"sentence": [sentence]})
