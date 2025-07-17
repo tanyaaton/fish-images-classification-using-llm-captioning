@@ -85,28 +85,6 @@ class ElasticsearchQuery:
         except Exception as e:
             print(f"✗ Search error: {e}")
     
-    # def search_range(self, index_name, field, min_val=None, max_val=None, size=10):
-    #     """Search numeric/date range"""
-    #     try:
-    #         range_query = {}
-    #         if min_val is not None:
-    #             range_query["gte"] = min_val
-    #         if max_val is not None:
-    #             range_query["lte"] = max_val
-            
-    #         response = self.es.search(
-    #             index=index_name,
-    #             body={
-    #                 "query": {"range": {field: range_query}},
-    #                 "size": size
-    #             }
-    #         )
-    #         docs = [hit['_source'] for hit in response['hits']['hits']]
-    #         print(f"📄 Found {len(docs)} in range")
-    #         return docs
-    #     except Exception as e:
-    #         print(f"✗ Range error: {e}")
-    
     def search_embedding(self, index_name, embedding_field, query_vector, size=10):
         """Search similar vectors using kNN"""
         try:
@@ -123,19 +101,6 @@ class ElasticsearchQuery:
                 }
             )
             return response
-            
-            # results = []
-            # for hit in response['hits']['hits']:
-            #     results.append({
-            #         'score': hit['_score'],
-            #         'data': hit['_source']
-            #     })
-            
-            # print(f"🎯 Found {len(results)} similar embeddings")
-            # for i, result in enumerate(results):
-            #     print(f"  #{i+1}: Score {result['score']:.4f}")
-            
-            # return results
         except Exception as e:
             print(f"✗ Embedding search error: {e}")
     
@@ -149,28 +114,4 @@ class ElasticsearchQuery:
             return count
         except Exception as e:
             print(f"✗ Count error: {e}")
-        
-    def get_index_info(self, index_name):
-        try:
-            if not self.es.indices.exists(index=index_name):
-                print(f"❌ Index '{index_name}' not found")
-                return None
-            
-            # Get mapping and count
-            mapping = self.es.indices.get_mapping(index=index_name)[index_name]['mappings']
-            count = self.es.count(index=index_name)['count']
-            
-            # Get sample document
-            sample = self.es.search(index=index_name, body={"size": 1})
-            sample_doc = sample['hits']['hits'][0]['_source'] if sample['hits']['hits'] else {}
-            
-            print(f"📊 {index_name}: {count} rows")
-            print("Columns:")
-            for field, value in sample_doc.items():
-                field_type = type(value).__name__
-                print(f"  {field}: {field_type}")
-            
-            return {'rows': count, 'columns': list(sample_doc.keys()), 'sample': sample_doc}
-            
-        except Exception as e:
-            print(f"✗ Info error: {e}")
+       

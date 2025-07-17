@@ -1,5 +1,5 @@
 from function import semantic_text_search_fish_description, return_top_n_fish, text_search_fish_description_match
-from elasticsearch_query_service import ElasticsearchQuery
+from BE.elasticsearch_query import ElasticsearchQuery
 from watsonx_captioning import convert_image_to_base64, get_fish_description_from_watsonxai
 from embedding_service import EmbeddingService
 import pandas as pd
