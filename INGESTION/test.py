@@ -1,4 +1,4 @@
-from ingestion import ElasticsearchManager
+from elasticsearch_manager import ElasticsearchManager
 from embedding_hg import embed_text
 import pandas as pd
 import os
