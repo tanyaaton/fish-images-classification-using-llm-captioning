@@ -41,17 +41,17 @@ class ElasticsearchQuery:
         except Exception as e:
             print(f"✗ Error listing indices: {e}")
     
-    def get_document_count_from_index(self, index_name, silent=False):
-        try:
-            response = self.es.count(index=index_name)
-            count = response['count']
-            if not silent:
-                print(f"📊 Index '{index_name}' contains {count} documents")
-            return count
-        except Exception as e:
-            if not silent:
-                print(f"✗ Error getting document count: {e}")
-            return 0
+    # def get_document_count_from_index(self, index_name, silent=False):
+    #     try:
+    #         response = self.es.count(index=index_name)
+    #         count = response['count']
+    #         if not silent:
+    #             print(f"📊 Index '{index_name}' contains {count} documents")
+    #         return count
+    #     except Exception as e:
+    #         if not silent:
+    #             print(f"✗ Error getting document count: {e}")
+    #         return 0
   
     def search_text(self, index_name, field, text, size=10):
         """Search text in specific field"""

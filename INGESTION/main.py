@@ -16,7 +16,7 @@ es_username = os.environ["es_username"]
 es_password = os.environ["es_password"]
 
 #--------ingestion to elasticsearch----------------
-index_name = 'testesttt'
+index_name = '17july2331'
 
 # csv file must have at least 2 columns: fish_name, general_description
 df = pd.read_csv("EXTRACTION/DATA/fish-description-files/Marine_Fish_Species_Full_Description_test.csv")
