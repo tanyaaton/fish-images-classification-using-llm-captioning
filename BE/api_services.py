@@ -1,7 +1,7 @@
 
 from flask import Flask, request, jsonify
 # Import functions from retrieve.py
-from retrieve import convert_image_to_base64, get_fish_description_from_watsonxai
+from watsonx_captioning import convert_image_to_base64, get_fish_description_from_watsonxai
 
 app = Flask(__name__)
 
