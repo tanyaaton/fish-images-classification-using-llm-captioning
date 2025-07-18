@@ -26,9 +26,8 @@ access_token=decoded_json["access_token"]
 
 
 ### input and descripe input image
-image_path = "fish-pictures/fish-1.png"
 
-def convert_image_to_base64(image_path):
+def convert_image_to_base64(image_path="fish-pictures/fish-1.png"):
     pic = open(image_path,"rb").read()
     pic_base64 = base64.b64encode(pic)
     pic_string = pic_base64.decode("utf-8")

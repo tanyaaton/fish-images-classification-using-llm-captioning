@@ -4,11 +4,6 @@ import os
 
 load_dotenv()
 
-
-# --------------- change to tech zone connection ----------------
-# elastic_url = os.getenv("ELASTIC_URL", None)
-# elastic_api_key = os.getenv("ELASTIC_APIKEY", None)
-
 es_endpoint = os.environ["es_endpoint"]
 es_cert_path = os.environ["es_cert_path"]
 es_username = os.environ["es_username"]
@@ -24,10 +19,11 @@ es = Elasticsearch(
     http_auth=(es_username, es_password),
     verify_certs=False
 )
-# ----------------------------------------------------------------
 
 print('Info:',es.info())
 
+
+# -------------------------------- query -------------------------------------
 def semantic_text_search_fish_description(input_image_description, index_name):
     # Direct semantic query approach for Elasticsearch 8.12
     search_body = {
