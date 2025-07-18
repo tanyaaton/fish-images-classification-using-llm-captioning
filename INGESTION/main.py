@@ -19,7 +19,7 @@ es_password = os.environ["es_password"]
 index_name = '17july2331'
 
 # csv file must have at least 2 columns: fish_name, general_description
-df = pd.read_csv("EXTRACTION/DATA/fish-description-files/Marine_Fish_Species_Full_Description_test.csv")
+df = pd.read_csv("../EXTRACTION/DATA/fish-description-files/Marine_Fish_Species_Full_Description_test.csv")
 
 # generate description embeddings
 emb = EmbeddingService('sentence_transformer') # watsonx or sentence_transformer
