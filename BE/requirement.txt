@@ -8,3 +8,4 @@ pillow==11.1.0
 botocore==1.35.15
 ibm-cos-sdk==2.12.0
 ibm-watsonx-ai==1.2.1
+retrieve
