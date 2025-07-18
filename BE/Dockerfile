@@ -5,10 +5,10 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # 3. Copy requirements (for caching pip install)
-COPY requirements.txt .
+COPY requirement.txt .
 
 # 4. Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirement.txt
 
 # 5. Copy application code
 COPY . .
