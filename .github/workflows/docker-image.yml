@@ -17,9 +17,9 @@ jobs:
       matrix:
         context:
           - path: BE
-            image: ${{ secrets.ICR_REGION }}/${{ secrets.ICR_NAMESPACE }}/be-image:latest
+            image: us.icr.io/itz-watson-apps-gw7e10of-cr/be-image:latest
           - path: snowflake-embedding
-            image: ${{ secrets.ICR_REGION }}/${{ secrets.ICR_NAMESPACE }}/snowflake-embedding-image:latest
+            image: us.icr.io/itz-watson-apps-gw7e10of-cr/snowflake-embedding-image:latest
 
     steps:
       - name: Checkout code
