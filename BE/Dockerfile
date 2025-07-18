@@ -26,4 +26,4 @@ EXPOSE 8080
 # CMD ["flask", "run"]
 
 # For production, use gunicorn (recommended)
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "api_services:app"]
