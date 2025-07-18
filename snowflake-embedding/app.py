@@ -5,12 +5,12 @@ from sentence_transformers import SentenceTransformer
 app = Flask(__name__)
 model_name = 'Snowflake/snowflake-arctic-embed-l-v2.0'
  
-cache_directory = "./" # You can choose a sub-directory in /tmp
+cache_directory = "/tmp/huggingface_models" # You can choose a sub-directory in /tmp
 
 # Ensure the directory exists
 import os
 os.makedirs(cache_directory, exist_ok=True)
-model = SentenceTransformer(model_name, cache_folder=cache_directory)
+model = SentenceTransformer(model_name, cache_dir=cache_directory)
 
 @app.route('/extract_text', methods=['POST'])
 def extract_text():
