@@ -19,11 +19,11 @@ ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_ENV=production
 
 # 7. Expose port (default Flask port)
-EXPOSE 5000
+EXPOSE 8080
 
 # 8. Run the app (using flask CLI or gunicorn for production)
 # If you use Flask's development server:
 # CMD ["flask", "run"]
 
 # For production, use gunicorn (recommended)
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
