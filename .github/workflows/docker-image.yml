@@ -17,7 +17,7 @@ jobs:
       matrix:
         context:
           - path: BE
-            image: us.icr.io/itz-watson-apps-gw7e10of-cr/be-image:latest
+            image: us.icr.io/itz-watson-apps-gw7e10of-cr/fish-image-classify:latest
           - path: snowflake-embedding
             image: us.icr.io/itz-watson-apps-gw7e10of-cr/snowflake-embedding-image:latest
 
