@@ -42,9 +42,9 @@ def search():
 def image_captioning():
     try:
         data = request.get_json()
-        s3_link = data.get("link_s3", "")
+        image = data.get("image", "")
         # For demonstration, use a local image path. Replace with S3 download logic as needed.
-        image_path = s3_link if s3_link else "fish-pictures/fish-1.png"
+        image_path = image if image else "../EXTRACTION/DATA/fish-random/fish-2.jpg"
         pic_string = convert_image_to_base64(image_path)
         caption = get_fish_description_from_watsonxai(pic_string)
         return jsonify({"caption": caption})
@@ -64,6 +64,7 @@ def generation():
         import logging
         logging.error(f"Error in generation: {e}")
         return jsonify(fallback_response("generation")), 503
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
