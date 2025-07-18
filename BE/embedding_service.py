@@ -5,6 +5,14 @@ from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 
 load_dotenv()
+ 
+ 
+cache_directory = "/tmp/huggingface_models" # You can choose a sub-directory in /tmp
+
+# Ensure the directory exists
+import os
+os.makedirs(cache_directory, exist_ok=True)
+ 
 
 
 class EmbeddingService:
@@ -12,7 +20,7 @@ class EmbeddingService:
         self.embedding_type = embedding_type.lower()
         print(f"Using embedding type: {self.embedding_type}")
         if self.embedding_type == "sentence_transformer":
-            self.model = SentenceTransformer(model_name or 'Snowflake/snowflake-arctic-embed-l-v2.0')
+            self.model = SentenceTransformer(model_name or 'Snowflake/snowflake-arctic-embed-l-v2.0', cache_folder=cache_directory)
         elif self.embedding_type == "watsonx":
             load_dotenv()
             self.emb_url = os.getenv("EMBEDDING_SERVICE_URL")
