@@ -22,6 +22,11 @@ app = Flask(__name__)
 def fallback_response(service_name):
     return {"error": f"{service_name} service unavailable", "fallback": True}
 
+@app.route("/live", methods=["GET"])
+def live():
+    return jsonify(status="ok"), 200
+
+
 @app.route("/search", methods=["POST"])
 def search():
     try:
