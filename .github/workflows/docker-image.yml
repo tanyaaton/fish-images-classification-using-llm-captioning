@@ -1,18 +1,37 @@
-name: Docker Image CI
+name: Build and Push Docker Images
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [main]
+    paths:
+      - 'BE/**'
+      - 'snowflake-embedding/**'
+      - '.github/workflows/docker-build-push.yml'
 
 jobs:
-
-  build:
-
+  build-and-push:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        context:
+          - path: BE
+            image: ${{ secrets.ICR_REGION }}/${{ secrets.ICR_NAMESPACE }}/be-image:latest
+          - path: snowflake-embedding
+            image: ${{ secrets.ICR_REGION }}/${{ secrets.ICR_NAMESPACE }}/snowflake-embedding-image:latest
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to IBM Cloud Container Registry
+        run: |
+          echo "${{ secrets.ICR_PASSWORD }}" | docker login -u "${{ secrets.ICR_USERNAME }}" --password-stdin "${{ secrets.ICR_REGION }}"
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ matrix.context.image }} ${{ matrix.context.path }}
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ matrix.context.image }}
