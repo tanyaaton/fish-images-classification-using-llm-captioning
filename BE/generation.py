@@ -60,24 +60,22 @@ def proximity_search( query ):
 
     return results.get("output")
 
-def get_generated_response(question: str, reference: str, chat_history: list = None):
+def get_generated_response(question: str, chat_history: list = None):
     """
-    Generates a response using watsonx.ai based on a question, reference context, and chat history.
+    Generates a response using watsonx.ai based on a question, grounding context, and chat history.
     
     Args:
         question (str): The current user question
-        reference (str): Product/fish information context
         chat_history (list): List of previous chat messages in format [{"role": "user"|"assistant", "content": "..."}]
     """
     if chat_history is None:
         chat_history = []
     grounding = proximity_search(question)
-    combined_reference = f"{reference}\n\nGrounding info from proximity search:\n{grounding}"
 
     system_prompt = (
         "You are a helpful marine biology assistant specializing in fish identification and information. "
         "Answer the user's question based only on the provided fish species information and previous conversation context. "
-        "When asked to identify a fish, provide information about the fish and other possible fish species based on the provided reference. "
+        "When asked to identify a fish, provide information about the fish and other possible fish species based on the provided grounding information. "
         "Include details about fish characteristics, habitat, behavior, distinguishing features, size ranges, coloration patterns, and behavioral traits when available. "
         "If multiple species are possible matches, explain the differences between them. "
         "Keep your tone informative and friendly, and maintain conversation continuity from chat history. "
@@ -86,7 +84,7 @@ def get_generated_response(question: str, reference: str, chat_history: list = N
     )
 
     user_prompt = (
-        f"Based on this fish information: {combined_reference}\n\n"
+        f"Based on this fish information from grounding search: {grounding}\n\n"
         f"And this question: {question}\n\n"
         f"Please give a natural-sounding response considering our previous conversation."
     )
@@ -123,5 +121,5 @@ if __name__ == "__main__":
         {"role": "assistant", "content": "Clownfish eat small invertebrates and algae."}
     ]
     question = "I encounter a dark tone triggerfish with a red teeth what kind of fish is it?"
-    response = get_generated_response(question, reference, chat_history)
+    response = get_generated_response(question, chat_history)
     print("Generated Response:", response)
