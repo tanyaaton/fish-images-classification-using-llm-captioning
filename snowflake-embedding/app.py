@@ -10,7 +10,7 @@ cache_directory = "/tmp/huggingface_models" # You can choose a sub-directory in 
 # Ensure the directory exists
 import os
 os.makedirs(cache_directory, exist_ok=True)
-model = SentenceTransformer(model_name, cache_dir=cache_directory)
+model = SentenceTransformer(model_name, cache_folder=cache_directory)
 
 @app.route('/extract_text', methods=['POST'])
 def extract_text():
