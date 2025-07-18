@@ -57,11 +57,12 @@ def generation():
         data = request.get_json()
         reference = data.get("reference", "")
         question = data.get("question", "")
+        chat_history = data.get("chat_history", [])  # List of previous messages
 
         if not reference:
             response_text = "Hello, I am a Customer Service Assistant. Please provide a query with relevant product context."
         else:
-            response_text = get_generated_response(question, reference)
+            response_text = get_generated_response(question, reference, chat_history)
             
         return jsonify({"response": response_text})
     except Exception as e:
