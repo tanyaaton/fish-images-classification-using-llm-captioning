@@ -81,9 +81,9 @@ jobs:
           application_exists=$(ibmcloud ce application list --output json | jq -r ".items[] | select(.metadata.name == \"${app_name}\") | .metadata.name")
           if [ "$application_exists" == "$app_name" ]; then
             echo "Updating application..."
-            ibmcloud ce application update --name $app_name --cpu 4 --memory 8G --es 8G --min-scale 1 --env-from-secret $app_name -v public --image $image_full --port 8080 --registry-secret ibmcloud
+            ibmcloud ce application update --name $app_name --cpu 2 --memory 4G --es 4G --min-scale 1 --env-from-secret $app_name -v public --image $image_full --port 8080 --registry-secret ibmcloud
           else
             echo "Application does not exist, creating..."
-            ibmcloud ce application create --name $app_name --cpu 4 --memory 8G --es 8G --min-scale 1 --env-from-secret $app_name -v public --image $image_full --port 8080 --registry-secret ibmcloud
+            ibmcloud ce application create --name $app_name --cpu 2 --memory 4G --es 4G --min-scale 1 --env-from-secret $app_name -v public --image $image_full --port 8080 --registry-secret ibmcloud
           fi
 
