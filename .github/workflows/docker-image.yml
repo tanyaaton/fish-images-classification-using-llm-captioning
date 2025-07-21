@@ -76,9 +76,8 @@ jobs:
           app_name: ${{ matrix.context.app_name }}
           image_full: ${{ matrix.context.image }}
         run: |
-          echo "Checking if application exists: $application_exists"
-          echo "Application name: $app_name"
-          echo "Image to deploy: $image_full"
+          echo "APP NAME = $app_name"
+          echo "IMAGE FULL = $image_full"
           application_exists=$(ibmcloud ce application list --output json | jq -r ".items[] | select(.metadata.name == \"${app_name}\") | .metadata.name")
           if [ "$application_exists" == "$app_name" ]; then
             echo "Updating application..."
