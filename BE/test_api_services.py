@@ -10,6 +10,13 @@ def test_search():
     print("/search response:", response.status_code)
     print(response.json())
 
+def test_search2():
+    url = f"{BASE_URL}/search"
+    payload = {"text": "What is Clark's anemonefish appearance look like?"}
+    response = requests.post(url, json=payload)
+    print("/search response:", response.status_code)
+    print(response.json())
+
 def test_image_captioning():
     url = f"{BASE_URL}/image_captioning"
     payload = {"link_s3": "fish-pictures/fish-1.png"}  # Use local path for demo
@@ -20,7 +27,7 @@ def test_image_captioning():
 def test_generation():
     url = f"{BASE_URL}/generation"
     payload = {
-        "question": "What is the most common fish in Thailand?",
+        "question": "What does Clark's anemonefish look like?",
         "chat_history": []
     }
     response = requests.post(url, json=payload)
@@ -28,9 +35,11 @@ def test_generation():
     print(response.json())
 
 if __name__ == "__main__":
-    print("Testing /search...")
-    test_search()
-    print("\nTesting /image_captioning...")
-    test_image_captioning()
+    # print("Testing /search...")
+    # test_search()
+    # print("Testing /search2...")
+    # test_search2()
+    # print("\nTesting /image_captioning...")
+    # test_image_captioning()
     print("\nTesting /generation...")
     test_generation()

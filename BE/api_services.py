@@ -12,7 +12,7 @@ load_dotenv()
 es_endpoint = os.environ["es_endpoint"]
 es_username = os.environ["es_username"]
 es_password = os.environ["es_password"]
-index_name = '17july2331'
+index_name = 'fish_index_v2'
 esq = ElasticsearchQuery(es_endpoint, es_username, es_password)
 emb = EmbeddingService('sentence_transformer')
 
