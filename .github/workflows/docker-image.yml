@@ -37,7 +37,15 @@ jobs:
 
       - name: IBM Cloud CLI Login
         run: |
-          ibmcloud login --apikey "${{ secrets.IBM_CLOUD_API_KEY }}" -r "${{ secrets.IBM_CLOUD_RG }}"
+          ibmcloud login --apikey "${{ secrets.IBM_CLOUD_API_KEY }}" -r us-south
+
+      - name: Set IBM Cloud Code Engine Project
+        run: |
+          ibmcloud ce project select --id "${{ secrets.IBM_CLOUD_PROJECT }}"
+
+      - name: Set IBM Cloud Region
+        run: |
+          ibmcloud target -g "${{ secrets.IBM_CLOUD_RG }}"
 
       - name: Log in to IBM Cloud Container Registry
         run: |
