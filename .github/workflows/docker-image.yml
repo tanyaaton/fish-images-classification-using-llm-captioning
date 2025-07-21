@@ -71,6 +71,5 @@ jobs:
           else
             echo "Application does not exist, creating..."
             ibmcloud ce application create --name $app_name --cpu 8 --memory 32G --es 32G --min-scale 1 --env-from-secret $app_name -v public --image $image_full --port 8080  --registry-secret ibmcloud
-          else
           fi
 
