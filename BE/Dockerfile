@@ -7,6 +7,7 @@ COPY requirement.txt .
 RUN pip install --no-cache-dir -r requirement.txt
 
 COPY . .
+RUN python download_model.py
 
 ENV FLASK_APP=api_services.py
 ENV FLASK_RUN_HOST=0.0.0.0
