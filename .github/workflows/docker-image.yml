@@ -69,6 +69,13 @@ jobs:
       - name: Debug matrix
         run: |
           echo "${{ toJson(matrix) }}"
+      - name: Check env values
+        env:
+          app_name: ${{ matrix.context.app_name }}
+          image_full: ${{ matrix.context.image }}
+        run: |
+          echo "APP NAME = $app_name"
+          echo "IMAGE FULL = $image_full"
 
 
       - name: Deploy or Update Code Engine App
