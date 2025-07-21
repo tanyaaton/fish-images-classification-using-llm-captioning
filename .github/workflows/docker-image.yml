@@ -11,19 +11,33 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
- 
+
 
     strategy:
       matrix:
         context:
           - path: BE
             image: us.icr.io/itz-watson-apps-gw7e10of-cr/fish-image-classify:latest
+            app_name: fish-image-classify
           - path: snowflake-embedding
             image: us.icr.io/itz-watson-apps-gw7e10of-cr/snowflake-embedding-image:latest
+            app_name: snowflake-embedding
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Install IBM Cloud CLI
+        run: |
+          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
+
+      - name: Install IBM Cloud Code Engine Plugin
+        run: |
+          ibmcloud plugin install code-engine
+
+      - name: IBM Cloud CLI Login
+        run: |
+          ibmcloud login --apikey "${{ secrets.IBM_CLOUD_API_KEY }}" -r "${{ secrets.IBM_CLOUD_RG }}"
 
       - name: Log in to IBM Cloud Container Registry
         run: |
@@ -36,3 +50,28 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ matrix.context.image }}
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Deploy or Update Code Engine App
+        env:
+          app_name: ${{ matrix.app_name }}
+          image_full: ${{ matrix.image_name }}
+        run: |
+          # Check if application exists
+          application_exists=$(ibmcloud ce application list --output json | jq -r ".items[] | select(.metadata.name == \"${app_name}\") | .metadata.name")
+          if [ "$application_exists" == "$app_name" ]; then
+            echo "Updating application..."
+            ibmcloud ce application update --name $app_name --cpu 8 --memory 32G --es 32G --min-scale 1 --env-from-secret $app_name -v public \
+            --image $image_full \
+            --port 8080 \
+            --registry-secret th-ce-ibm
+          else
+            echo "Application does not exist, creating..."
+            ibmcloud ce application create --name $app_name --cpu 8 --memory 32G --es 32G --min-scale 1 --env-from-secret $app_name -v public \
+            --image $image_full \
+            --port 8080 \
+            --registry-secret th-ce-ibm
+          fi
+
