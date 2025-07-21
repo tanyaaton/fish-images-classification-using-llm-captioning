@@ -8,6 +8,14 @@ on:
       - 'snowflake-embedding/**'
       - '.github/workflows/docker-image.yml'
 
+env:
+  IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
+  IBM_CLOUD_RG: ${{ secrets.IBM_CLOUD_RG }}
+  IBM_CLOUD_PROJECT: ${{ secrets.IBM_CLOUD_PROJECT }}
+  ICR_REGION: ${{ secrets.ICR_REGION }}
+  ICR_USERNAME: ${{ secrets.ICR_USERNAME }}
+  ICR_PASSWORD: ${{ secrets.ICR_PASSWORD }}
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -61,8 +69,8 @@ jobs:
 
       - name: Deploy or Update Code Engine App
         env:
-          app_name: ${{ matrix.app_name }}
-          image_full: ${{ matrix.image }}
+          app_name: ${{ matrix.context.app_name }}
+          image_full: ${{ matrix.context.image }}
         run: |
           application_exists=$(ibmcloud ce application list --output json | jq -r ".items[] | select(.metadata.name == \"${app_name}\") | .metadata.name")
           echo "Checking if application exists: $application_exists"
