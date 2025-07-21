@@ -12,10 +12,10 @@ WORKDIR /app
 
 # Copy the current directory contents into the container at /app
 COPY . .
-RUN python download_model.py
-
 # Install any necessary packages specified in requirements.txt
 RUN pip install -r requirements.txt
+
+RUN python download_model.py
 
 # Make port 8001 available to the world outside this container
 EXPOSE 8080
