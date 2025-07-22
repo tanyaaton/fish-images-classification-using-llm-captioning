@@ -27,19 +27,24 @@ def test_image_captioning():
 def test_generation():
     url = f"{BASE_URL}/generation"
     payload = {
-        "question": "What does Clark's anemonefish look like?",
-        "chat_history": []
+        "question": "What does Lion fish look like?",
+        "chat_history": [
+            {"role": "user", "content": "Can you tell me about clownfish?"},
+            {"role": "assistant", "content": "Clownfish are known for their symbiosis with sea anemones."},
+            {"role": "user", "content": "What about Clark's anemonefish?"},
+            {"role": "assistant", "content": "Clark's anemonefish is a clownfish with distinctive white stripes and various color morphs. It lives in symbiosis with sea anemones throughout the Indo-Pacific."}
+        ]
     }
     response = requests.post(url, json=payload)
     print("/generation response:", response.status_code)
     print(response.json())
 
 if __name__ == "__main__":
-    # print("Testing /search...")
-    # test_search()
-    # print("Testing /search2...")
-    # test_search2()
+    print("Testing /search...")
+    test_search()
+    print("Testing /search2...")
+    test_search2()
     # print("\nTesting /image_captioning...")
     # test_image_captioning()
-    print("\nTesting /generation...")
-    test_generation()
+    # print("\nTesting /generation...")
+    # test_generation()

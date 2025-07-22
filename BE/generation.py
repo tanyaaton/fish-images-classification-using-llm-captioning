@@ -42,9 +42,9 @@ from function import return_top_n_fish
 es_endpoint = os.environ["es_endpoint"]
 es_username = os.environ["es_username"]
 es_password = os.environ["es_password"]
-index_name = 'fish_index_v2'
+index_name = 'fish_index_v3'
 esq = ElasticsearchQuery(es_endpoint, es_username, es_password)
-emb = EmbeddingService('sentence_transformer')
+emb = EmbeddingService('watsonx')
 
 def get_generated_response(question: str, chat_history: list = None):
     """
@@ -54,9 +54,9 @@ def get_generated_response(question: str, chat_history: list = None):
     if chat_history is None:
         chat_history = []
 
-    # Always generate reference using embedding search
+    # Always generate reference using embedding search (use online embedding service)
     caption_embedding = emb.embed_text(question)
-    hits = esq.search_embedding(index_name=index_name, embedding_field='embedding', query_vector=caption_embedding[0], size=5)
+    hits = esq.search_embedding(index_name=index_name, embedding_field='embedding', query_vector=caption_embedding, size=5)
     top_n_fish = return_top_n_fish(hits, n=5)
     reference = "\n".join([
         f"{fish.get('fish_name', 'Unknown')}: {fish.get('description', '')} (score: {fish.get('score', '')})"
@@ -70,8 +70,8 @@ def get_generated_response(question: str, chat_history: list = None):
         "You will always be provided with reference information about similar fish species, including their names, descriptions, and similarity scores. "
         "For fish identification or fish information questions, use the reference to check if the fish mentioned by the user appears in the reference list. "
         "If the fish is found in the reference, use its information to answer the question. "
-        "If the fish is not found in the reference, inform the user that it does not appear to be one of the 91 species in our database. "
-        "For other questions, answer based on previous conversation context. "
+        "If the question is about the fish and it is not found in the reference, inform the user that it does not appear to be one of the 91 species in our database. "
+        "If the user's question is generic or unclear (such as 'yes', 'okay', 'please', etc.), answer based on the previous conversation context. "
         "When answering, include details about fish characteristics, habitat, behavior, distinguishing features, size ranges, coloration patterns, and behavioral traits when available. "
         "If multiple species are possible matches, explain the differences between them. "
         "Keep your tone informative and friendly, and maintain conversation continuity from chat history. "
@@ -101,13 +101,24 @@ def get_generated_response(question: str, chat_history: list = None):
         return "Error: Invalid response from model."
     
 # Example usage
-if __name__ == "__main__":  
-    # Example usage: question about a specific fish, reference formatted as in main function
+if __name__ == "__main__":
+    # Test 1: User asks about a specific fish
     chat_history = [
         {"role": "user", "content": "Can you tell me about clownfish?"},
         {"role": "assistant", "content": "Clownfish are known for their symbiosis with sea anemones."},
-        {"role": "user", "content": "What about Clark's anemonefish?"}
+        {"role": "user", "content": "What about Clark's anemonefish?"},
+        {"role": "assistant", "content": "Clark's anemonefish is a clownfish with distinctive white stripes and various color morphs. It lives in symbiosis with sea anemones throughout the Indo-Pacific."}
     ]
-    question = "What does Clark's anemonefish look like?"
+    question = "What is the typical habitat of a lionfish?"
+    print("Test 1: User asks about a different fish (lionfish) with no follow-up question")
     response = get_generated_response(question, chat_history)
     print("Generated Response:", response)
+
+    # Test 2: User asks a general marine biology question
+    chat_history2 = [
+        {"role": "user", "content": "What is the average lifespan of marine fish in the wild?"}
+    ]
+    question2 = "How do fish adapt to coral reefs?"
+    print("\nTest 2: User asks a general marine biology question")
+    response2 = get_generated_response(question2, chat_history2)
+    print("Generated Response:", response2)

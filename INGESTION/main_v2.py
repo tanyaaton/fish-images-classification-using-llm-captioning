@@ -7,12 +7,13 @@ df = pd.read_csv("../EXTRACTION/DATA/fish-description-files/Marine_Fish_Species_
 # Embedding function
 def get_online_embedding(text):
     url = "https://snowflake-embedding.1xlkl2nudnhu.us-south.codeengine.appdomain.cloud/extract_text"
-    payload = {"sentence": text}
+    payload = {"sentence": [text]}
     response = requests.post(url, json=payload)
     response.raise_for_status()
     data = response.json()
     print("RAW API RESPONSE:", data)  # Debug: print the raw response
-    embedding = [item[1] for item in data["predictions"][0]["values"]]
+    # Extract the dense embedding vector (should be a list of floats)
+    embedding = data["predictions"][0]["values"][0][1]
     return embedding
 
 print('Checking embedding lengths for each description...')

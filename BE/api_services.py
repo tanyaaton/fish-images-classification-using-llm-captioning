@@ -12,9 +12,9 @@ load_dotenv()
 es_endpoint = os.environ["es_endpoint"]
 es_username = os.environ["es_username"]
 es_password = os.environ["es_password"]
-index_name = 'fish_index_v2'
+index_name = 'fish_index_v3'
 esq = ElasticsearchQuery(es_endpoint, es_username, es_password)
-emb = EmbeddingService('sentence_transformer')
+emb = EmbeddingService('watsonx')
 
 app = Flask(__name__)
 
@@ -31,10 +31,12 @@ def search():
             return jsonify({"error": "No text input provided"}), 400
 
         caption_embedding = emb.embed_text(text_input)
-        hits = esq.search_embedding(index_name=index_name, embedding_field='embedding', query_vector=caption_embedding[0], size=5)
+        hits = esq.search_embedding(index_name=index_name, embedding_field='embedding', query_vector=caption_embedding, size=5)
         top_n_fish = return_top_n_fish(hits, n=5)
         return jsonify({"input": text_input, "results": top_n_fish})
     except Exception as e:
+        import logging
+        logging.error(f"Error in /search: {e}")
         return jsonify(fallback_response("search")), 503
 
 # This service might take a while to respond due to image processing
