@@ -42,7 +42,7 @@ jobs:
           
       - name: Install IBM Cloud CR Plugin
         run: |
-          ibmcloud plugin install container-registry -r 'IBM Cloud'
+          ibmcloud plugin install container-registry 
 
       - name: IBM Cloud CLI Login
         run: |
@@ -56,13 +56,15 @@ jobs:
         run: |
            ibmcloud cr login
 
-      - name: set namespace
-        run: |
-          ibmcloud cr namespace-add itz-watson-apps-gw7e10of-cr
+
 
       - name: Set IBM Cloud Region
         run: |
           ibmcloud target -g "${{ secrets.IBM_CLOUD_RG }}"
+          
+      - name: set namespace
+        run: |
+          ibmcloud cr namespace-add itz-watson-apps-gw7e10of-cr
 
       - name: Set IBM Cloud Code Engine Project
         run: |
