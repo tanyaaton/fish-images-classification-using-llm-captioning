@@ -19,7 +19,8 @@ def test_search2():
 
 def test_image_captioning():
     url = f"{BASE_URL}/image_captioning"
-    payload = {"link_s3": "fish-pictures/fish-1.png"}  # Use local path for demo
+    # Use a real COS object key for testing
+    payload = {"image": "indian-mackerel-003.png"}
     response = requests.post(url, json=payload)
     print("/image_captioning response:", response.status_code)
     print(response.json())
@@ -44,7 +45,7 @@ if __name__ == "__main__":
     test_search()
     print("Testing /search2...")
     test_search2()
-    # print("\nTesting /image_captioning...")
-    # test_image_captioning()
-    # print("\nTesting /generation...")
-    # test_generation()
+    print("\nTesting /image_captioning...")
+    test_image_captioning()
+    print("\nTesting /generation...")
+    test_generation()
