@@ -7,6 +7,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+cache_directory = "/tmp/huggingface_models" # You can choose a sub-directory in /tmp
+
+# Ensure the directory exists
+import os
+os.makedirs(cache_directory, exist_ok=True)
+
+
+
 class EmbeddingService:
     def __init__(self, embedding_type: str = "watsonx", model_name: str = None):
         self.embedding_type = embedding_type.lower()
@@ -20,13 +28,13 @@ class EmbeddingService:
                 raise ValueError("EMBEDDING_SERVICE_URL environment variable required")
         else:
             raise ValueError("embedding_type must be 'sentence_transformer' or 'watsonx'")
-    
+
     def embed_text(self, sentences: Union[str, List[str]]):
         single_input = isinstance(sentences, str)
         print(f"Embedding input: {sentences}")
         if single_input:
             sentences = [sentences]
-        
+
         if self.embedding_type == "sentence_transformer":
             embeddings = self.model.encode(sentences)
             return embeddings
@@ -35,5 +43,5 @@ class EmbeddingService:
             for sentence in sentences:
                 response = requests.post(self.emb_url, json={"sentence": [sentence]})
                 embeddings.append(response.json()["predictions"][0]["values"][0][1])
-        
+
         return embeddings[0] if single_input else embeddings
