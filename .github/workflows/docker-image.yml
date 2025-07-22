@@ -62,9 +62,6 @@ jobs:
         run: |
           ibmcloud target -g "${{ secrets.IBM_CLOUD_RG }}"
           
-      - name: set namespace
-        run: |
-          ibmcloud cr namespace-add itz-watson-apps-gw7e10of-cr
 
       - name: Set IBM Cloud Code Engine Project
         run: |
