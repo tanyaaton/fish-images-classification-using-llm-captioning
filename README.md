@@ -1,6 +1,5 @@
 ## Ingestion Pipeline
 
-### 🔹 How to Ingest
 Use `main.py` in the `INGEST` folder.
 
 - **Input**: CSV file with **3 columns**:  
