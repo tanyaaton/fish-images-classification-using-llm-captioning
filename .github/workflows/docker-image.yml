@@ -39,10 +39,26 @@ jobs:
       - name: Install IBM Cloud Code Engine Plugin
         run: |
           ibmcloud plugin install code-engine
+          
+      - name: Install IBM Cloud CR Plugin
+        run: |
+          ibmcloud plugin install container-registry -r 'IBM Cloud'
 
       - name: IBM Cloud CLI Login
         run: |
           ibmcloud login --apikey "${{ secrets.IBM_CLOUD_API_KEY }}" -r us-south
+
+      - name: set ICR region
+        run: |
+           ibmcloud cr region-set us-south
+
+      - name: login ICR
+        run: |
+           ibmcloud cr login
+
+      - name: set namespace
+        run: |
+          ibmcloud cr namespace-add itz-watson-apps-gw7e10of-cr
 
       - name: Set IBM Cloud Region
         run: |
