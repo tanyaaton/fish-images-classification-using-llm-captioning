@@ -64,7 +64,7 @@ def image_captioning():
                     config=Config(signature_version='oauth'),
                     endpoint_url=endpoint_url
                 )
-                response = cos.get_object(Bucket='intern-bucket', Key=image)
+                response = cos.get_object(Bucket='user-image-upload-bucket', Key=image)
                 image_bytes = response['Body'].read()
                 # Convert bytes to base64 string
                 import base64
