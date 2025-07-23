@@ -136,8 +136,15 @@ class ElasticsearchManager:
         # Upload to Elasticsearch
 
         # print(actions)
-        success, errors = bulk(self.es, actions)
-        print(f"Success: {success}, Errors: {errors}")
+        try:
+            success, errors = bulk(self.es, actions, raise_on_error=False)
+            print(f"Success: {success}, Errors: {errors}")
+            if errors:
+                print("Detailed errors:")
+                print(errors)
+        except Exception as e:
+            print("Exception during bulk upload:")
+            print(e)
 
     def get_index_info(self, index_name):
         try:
