@@ -43,8 +43,6 @@ def search():
         top_n_fish = return_top_n_fish(hits, n=5)
         return jsonify({"input": text_input, "results": top_n_fish})
     except Exception as e:
-        import logging
-        logging.error(f"Error in /search: {e}")
         return jsonify(fallback_response("search")), 503
 
 # This service might take a while to respond due to image processing
