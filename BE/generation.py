@@ -99,26 +99,3 @@ def get_generated_response(question: str, chat_history: list = None):
         return response["choices"][0]["message"].get("content", "Error: Could not extract generated text.")
     else:
         return "Error: Invalid response from model."
-    
-# Example usage
-if __name__ == "__main__":
-    # Test 1: User asks about a specific fish
-    chat_history = [
-        {"role": "user", "content": "Can you tell me about clownfish?"},
-        {"role": "assistant", "content": "Clownfish are known for their symbiosis with sea anemones."},
-        {"role": "user", "content": "What about Clark's anemonefish?"},
-        {"role": "assistant", "content": "Clark's anemonefish is a clownfish with distinctive white stripes and various color morphs. It lives in symbiosis with sea anemones throughout the Indo-Pacific."}
-    ]
-    question = "What is the typical habitat of a lionfish?"
-    print("Test 1: User asks about a different fish (lionfish) with no follow-up question")
-    response = get_generated_response(question, chat_history)
-    print("Generated Response:", response)
-
-    # Test 2: User asks a general marine biology question
-    chat_history2 = [
-        {"role": "user", "content": "What is the average lifespan of marine fish in the wild?"}
-    ]
-    question2 = "How do fish adapt to coral reefs?"
-    print("\nTest 2: User asks a general marine biology question")
-    response2 = get_generated_response(question2, chat_history2)
-    print("Generated Response:", response2)
