@@ -11,10 +11,6 @@ def download_from_cos(bucket_name, object_key, download_path):
     resource_instance_id = os.environ.get('IBM_COS_RESOURCE_INSTANCE_ID')
     endpoint_url = os.environ.get('IBM_COS_ENDPOINT')
 
-    print("API KEY:", api_key)
-    print("RESOURCE INSTANCE ID:", resource_instance_id)
-    print("ENDPOINT:", endpoint_url)
-
     cos = ibm_boto3.client(
         's3',
         ibm_api_key_id=api_key,
