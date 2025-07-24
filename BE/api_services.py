@@ -64,7 +64,7 @@ def image_captioning():
                     config=Config(signature_version='oauth'),
                     endpoint_url=endpoint_url
                 )
-                response = cos.get_object(Bucket='user-image-upload-bucket', Key=image)
+                response = cos.get_object(Bucket='fish-image-bucket', Key=image)
                 image_bytes = response['Body'].read()
                 # Convert bytes to base64 string
                 import base64
@@ -74,11 +74,12 @@ def image_captioning():
                 image_path = image
                 pic_string = convert_image_to_base64(image_path)
         else:
-            image_path = "../EXTRACTION/DATA/fish-random/fish-2.jpg"
-            pic_string = convert_image_to_base64(image_path)
+            # no image provided, return error
+            return jsonify({"error": "No image provided"}), 400
         caption = get_fish_description_from_watsonxai(pic_string)
         return jsonify({"caption": caption})
     except Exception as e:
+        print(f"Error in image_captioning: {e}")
         return jsonify(fallback_response("image_captioning")), 503
 
 @app.route("/generation", methods=["POST"])
