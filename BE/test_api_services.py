@@ -1,12 +1,19 @@
 import requests
 import json
 
-BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = "https://fish-image-classify.1xlkl2nudnhu.us-south.codeengine.appdomain.cloud"
 
 def test_search_tropical_fish_query():
     """Test search endpoint with general tropical fish query"""
     url = f"{BASE_URL}/search"
-    payload = {"text": "colorful tropical fish"}
+    payload = {"text":
+            """
+                "body": "The fish has an oval-shaped body with a rounded head and a relatively small size, approximately 3-5 inches in length.", 
+                "colors": "It features vibrant orange coloration with white stripes and black outlines, creating a striking pattern.", 
+                "features": "The fish has large dorsal and anal fins, with a distinctive rounded tail fin and small scales.", 
+                "unique_marks": "A prominent black stripe runs across the eyes, and the fish has a small mouth with a pointed snout."
+            """
+    }
     response = requests.post(url, json=payload)
     
     # Assertions
@@ -33,7 +40,7 @@ def test_image_captioning_indian_mackerel():
     """Test image captioning endpoint with Indian mackerel image"""
     url = f"{BASE_URL}/image_captioning"
     # Use a real COS object key for testing
-    payload = {"image": "indian-mackerel-003.png"}
+    payload = {"image": "user-upload/1753251768437-clownfish.jpg"}
     response = requests.post(url, json=payload)
     
     # Assertions

@@ -1,0 +1,568 @@
+{
+  "Brownbanded bamboo shark": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Whale shark": {
+    "Whale Shark": {
+      "body": "The Whale Shark has a broad, flat head and a long, slender body that is roughly cylindrical in shape, tapering towards the tail. They can grow up to 20 meters (66 feet) in length, with the average adult size ranging from 12 to 14 meters (40 to 46 feet), making them the largest fish in the world.",
+      "colors": "Whale Sharks have a distinctive color pattern featuring a mottled mix of light and dark gray, with white or pale yellow spots and stripes. The belly is usually white, while the back is darker, with a pattern of spots and stripes that can be unique to each individual.",
+      "features": "Whale Sharks have three prominent ridges running along their sides, and a broad, flat head with a short snout. They have a large mouth with many small teeth, but these are not used for eating prey. Instead, they use their gill rakers to filter small fish, plankton, and other organisms from the water. They have a pair of dorsal fins, with the second dorsal fin being much smaller than the first, and a large caudal fin.",
+      "unique_marks": "Each Whale Shark has a unique pattern of spots and stripes, similar to human fingerprints, which can be used to identify individual animals. They also have a distinctive pattern of scars and injuries that can be used to track their movements and behavior over time."
+    }
+  },
+  "Zebra shark": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Coral catshark": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Blacktip reef shark": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Whitetip reef shark": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Leopard shark": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Spotted eagle ray": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Manta ray": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Kuhl's maskray": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Bluespotted ribbontail ray": {
+    "body": "The Bluespotted ribbontail ray has a diamond-shaped body, with a rounded snout and a relatively short tail. It typically grows up to 23-30 inches (58-76 cm) in width, with a maximum recorded width of about 35 inches (89 cm).",
+    "colors": "The ray has a brownish-yellow to olive-brown dorsal surface, covered with bright blue spots, and a white or cream-colored ventral surface. The blue spots are usually rounded and may be surrounded by a yellowish ring.",
+    "features": "The Bluespotted ribbontail ray has a distinctive pair of long, thin tail extensions (filaments) that resemble ribbons. It has a small dorsal fin located near the base of the tail, and a long, pointed snout. The pectoral fins are broad and triangular, and the scales are small and rough to the touch.",
+    "unique_marks": "One of the most distinctive features of the Bluespotted ribbontail ray is the presence of bright blue spots on its dorsal surface, which are usually surrounded by a yellowish ring. The long, thin tail extensions (filaments) are also a unique identifying characteristic."
+  },
+  "Bowmouth guitarfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Shovelnose guitarfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Commerson's frogfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Painted frogfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Crocodile snake eel": {
+    "description": {
+      "body": "The Crocodile snake eel (Brachysomophis cirrocheilos) has a slender, elongated body shape, typically growing up to 60 cm (24 in) in length.",
+      "colors": "The coloration pattern of the Crocodile snake eel features a brownish or yellowish-brown back, with a lighter-colored belly. The body is often covered with small, darker spots or blotches.",
+      "features": "Distinctive features of the Crocodile snake eel include its pointed snout, relatively small eyes, and a pair of pectoral fins that are slightly larger than the dorsal and anal fins. The body is covered with small, cycloid scales.",
+      "unique_marks": "A unique identifying characteristic of the Crocodile snake eel is the presence of a distinctive cirrus (a long, thin, hair-like structure) above each eye, which can be up to 1/3 of the head length."
+    }
+  },
+  "Laced moray": {
+    "Laced Moray": {
+      "body": "The Laced moray has a slender, elongated body shape, typical of moray eels, with a maximum length of approximately 60 cm (24 in).",
+      "colors": "The Laced moray has a mottled brown and yellowish-brown coloration with a distinctive lacy pattern of darker brown or black markings, forming a network-like design on its body.",
+      "features": "The Laced moray has a pointed snout, relatively small eyes, and a large mouth with many small teeth. Its dorsal and anal fins are continuous with the caudal fin, forming a single fin that runs along the length of its body. The scales are small and embedded in the skin, giving a smooth appearance.",
+      "unique_marks": "A distinctive characteristic of the Laced moray is the presence of a dark brown or black stripe that runs through the eye and along the lateral line, which is often more pronounced than the lacy pattern on the body."
+    }
+  },
+  "Fimbriated moray": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Giant moray": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Greyface moray eel": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Spotted garden eel": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Ribbon eel": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Scrawled filefish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "White-spotted puffer": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Map puffer": {
+    "Map puffer": {
+      "body": "Oval-shaped body, typically 10-20 cm (4-8 in) in length, with some specimens reaching up to 30 cm (12 in)",
+      "colors": "Brown or yellowish-brown background with a distinctive map-like pattern of darker brown or black blotches and stripes, often with a lighter underside",
+      "features": "Small, beady eyes, a small mouth with fused teeth, and a distinctive set of pectoral fins that are modified into small, claw-like appendages; the skin is smooth and scaleless, but covered in small, sharp spines when inflated",
+      "unique_marks": "The map-like pattern of blotches and stripes on the back, which can vary in intensity and pattern, but is always distinctive; the ability to inflate the body with air or water when threatened, making the spines more prominent"
+    }
+  },
+  "Blackspotted puffer": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Stellate puffer": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Orange-lined triggerfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Clown triggerfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Titan triggerfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Spot-fin porcupinefish": {
+    "body": "The Spot-fin porcupinefish has a rounded, oval-shaped body, typically growing to a length of approximately 12-20 inches (30-50 cm) and weighing up to 3.5 pounds (1.6 kg).",
+    "colors": "The body is usually brown or yellowish-brown with numerous small, dark spots or blotches, often with a lighter underside. The spots may be more prominent on the upper body, and the fins may have a yellowish tint.",
+    "features": "Distinctive features of the Spot-fin porcupinefish include its long, pointed snout, relatively small eyes, and a mouth with numerous small, sharp teeth. The dorsal and anal fins are long and pointed, while the pectoral fins are relatively short. The body is covered in small, sharp spines that can be inflated when the fish feels threatened.",
+    "unique_marks": "One of the unique identifying characteristics of the Spot-fin porcupinefish is the presence of a distinctive dark spot on the dorsal fin, near the base. Additionally, the species often has a distinctive pattern of spots or blotches on the body, which can vary in intensity and distribution."
+  },
+  "Redtoothed triggerfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Yellow boxfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "White-spotted boxfish": {
+    "body": "The White-spotted boxfish has a cube-shaped body with a length of approximately 12-20 inches (30-50 cm) and a width of about 10-15 inches (25-38 cm).",
+    "colors": "The body is yellowish-brown with bright yellow or white spots, often with a distinctive white stripe running along the midline of the body. The spots may vary in size and intensity, and some specimens may have a more mottled appearance.",
+    "features": "The White-spotted boxfish has small dorsal and anal fins, and a distinctive head shape with a short, blunt snout. The scales are modified to form a protective box-like covering, with the ability to inflate its body for defense. The eyes are relatively small, and the mouth is small with many tiny teeth.",
+    "unique_marks": "A distinctive characteristic of the White-spotted boxfish is the presence of small, white spots on the body, which may be rounded or irregular in shape. The spots may be more concentrated on the dorsal and anal fins, and the fish may also have a distinctive pattern of spots or stripes on the head and snout."
+  },
+  "Yellowmargin triggerfish": {
+    "body": "The Yellowmargin triggerfish has a compressed, oval-shaped body with a rounded abdomen. It can grow up to 30 centimeters (11.8 inches) in length, with a maximum recorded weight of 6.8 kilograms (15 pounds).",
+    "colors": "The body is primarily yellowish-brown to dark brown in color, with a distinctive yellow margin on the anal and dorsal fins. The belly is pale yellow to white, while the back is mottled with darker brown spots or blotches. A yellowish stripe runs along the lateral line, and the tail is yellow with dark brown stripes.",
+    "features": "The Yellowmargin triggerfish has large, dorsal and anal fins that are rounded at the tips. The dorsal fin is divided into two parts, with the first part being much smaller than the second. The caudal fin is rounded and has a yellowish color with dark brown stripes. The scales are small and rough to the touch, with a distinctive pattern of tiny, embedded spines.",
+    "unique_marks": "A distinctive characteristic of the Yellowmargin triggerfish is the yellow margin on the anal and dorsal fins, which gives the species its name. Additionally, the species has a unique pattern of dark brown spots or blotches on the back, which can be used to distinguish it from other triggerfish species."
+  },
+  "Blue triggerfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Halfmoon triggerfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Zebra turkeyfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Clearfin lionfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Red lionfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "False stonefish": {
+    "False Stonefish": {
+      "body": "The False Stonefish has a rounded, stout body shape with a flattened head and a short, blunt snout. It can grow up to 30 cm (12 in) in length, but the average size is around 15-20 cm (6-8 in).",
+      "colors": "The False Stonefish has a mottled brown or greyish-brown coloration with darker blotches or spots, often with a lighter underside. The color pattern helps the fish blend in with its surroundings, making it difficult to spot.",
+      "features": "The False Stonefish has a distinctive dorsal fin with 13 spines and 9-10 soft rays, and its anal fin has 3 spines and 6-7 soft rays. It has small, cycloid scales that provide a rough texture to its skin. The head is broad and flat, with a short, blunt snout and a large mouth.",
+      "unique_marks": "One of the unique identifying characteristics of the False Stonefish is the presence of a distinctive dark stripe or blotch on the operculum (gill cover), which is often accompanied by a lighter-colored stripe or spot above it. Additionally, the fish has a series of small, dark spots or blotches along its lateral line, which can help distinguish it from other similar-looking species."
+    }
+  },
+  "Tassled scorpionfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Powderblue surgeonfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Clark's anemonefish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Tomato clownfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Ocellaris clownfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Pink skunk clownfish": {
+    "body": "The Pink Skunk Clownfish has an oval-shaped body, typically growing to an average length of 3-4 inches (7-10 cm) and weighing up to 2 ounces (57 grams).",
+    "colors": "The fish has a bright orange-pink body with a white stripe running vertically behind the eye, and a second stripe running horizontally across the middle of the body. The fins are yellow with a pinkish tint.",
+    "features": "The Pink Skunk Clownfish has a rounded head, a small mouth, and a distinctive dorsal fin with 11 spines and 16-17 rays. The anal fin has 2 spines and 13-14 rays. The scales are small and smooth, providing a glossy appearance.",
+    "unique_marks": "The distinctive white stripes behind the eye and across the middle of the body serve as unique identifying characteristics, distinguishing the Pink Skunk Clownfish from other clownfish species."
+  },
+  "Green humphead parrotfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Yellowback fusilier": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Yellowspotted trevally": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Giant trevally": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Bluefin trevally": {
+    "body": "The Bluefin trevally has an elongated, fusiform body shape, typically growing to a length of 30-60 cm (12-24 in), with a maximum recorded length of 80 cm (31.5 in) and a weight of up to 20 kg (44 lbs).",
+    "colors": "The body is a bright blue color on the upper back, gradually changing to silver on the sides and white on the belly. The blue coloration extends to the second dorsal fin, anal fin, and the caudal fin, which is also blue with a yellowish tip. There are no distinctive stripes or spots on the body, but the fins have a yellowish tint.",
+    "features": "The Bluefin trevally has a pointed head, a moderately sloping forehead, and a slightly convex upper jaw. The dorsal fin is divided into two parts: the first dorsal fin has 8 spines, while the second dorsal fin has 1 spine and 20-23 soft rays. The anal fin has 2 spines and 7-9 soft rays. The scales are small and cycloid, covering the body except for the head and the base of the fins.",
+    "unique_marks": "A distinctive feature of the Bluefin trevally is the bright blue coloration on the upper back and fins, which sets it apart from other trevally species. The absence of stripes or spots on the body also helps to identify this species."
+  },
+  "Bigeye trevally": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Argus grouper": {
+    "Argus grouper": {
+      "body": "The Argus grouper has a stout body, typically oval in shape and laterally compressed. It can grow up to 1.8 meters (5.9 feet) in length and weigh up to 150 kilograms (331 pounds).",
+      "colors": "The body is generally brown or greyish-brown in color with numerous small, rounded spots and blotches that are often darker than the background color. The spots and blotches may be more prominent on the dorsal side than the ventral side. The fins are often spotted or mottled as well.",
+      "features": "The Argus grouper has a distinctive head shape with a steeply sloping forehead and a prominent jaw. The dorsal fin is notched, with 11 spines and 16-18 soft rays. The anal fin has 3 spines and 8-9 soft rays. The scales are rough to the touch and the lateral line is slightly arched.",
+      "unique_marks": "One of the most distinctive features of the Argus grouper is the pattern of spots and blotches on its body, which can be used to identify individual fish. Additionally, the species has a unique arrangement of sensory papillae on its snout, which are thought to be used for detecting prey and navigating its environment."
+    }
+  },
+  "Coral hind": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Eastern triangle butterflyfish": {
+    "body": "The Eastern triangle butterflyfish has a moderately compressed, oval-shaped body, typically growing to an average length of 12-15 centimeters (4.7-5.9 inches).",
+    "colors": "Its body is predominantly yellow with a black stripe running vertically through the eye and a second black stripe running horizontally behind the eye. The rear portion of the body features a distinctive black triangle with a yellow border, and the fins are yellow with black edges.",
+    "features": "The Eastern triangle butterflyfish has a pointed snout and a small mouth. Its dorsal fin is moderately tall, and the anal fin is similar in shape and size. The scales are small and rough to the touch.",
+    "unique_marks": "A unique identifying characteristic of the Eastern triangle butterflyfish is the black triangle on its rear body, which is bordered by yellow and has a distinctive pointed tip. This marking is often used to distinguish it from other butterflyfish species."
+  },
+  "Redtail butterflyfish": {
+    "Redtail Butterflyfish": {
+      "body": "Oval-shaped body, approximately 6-8 inches (15-20 cm) in length",
+      "colors": "Yellow body with black stripes and a distinctive red tail, black stripes on the head and back, with a yellow snout and white belly",
+      "features": "Long, pointed snout, small mouth, large dorsal fin, and a rounded anal fin, scales are small and smooth",
+      "unique_marks": "Distinctive red tail, black vertical stripes on the head and body, and a black stripe through the eye"
+    }
+  },
+  "Indian vagabond butterflyfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Scrawled butterflyfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Eightband butterflyfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Latticed butterflyfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Humphead wrasse": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Humpback grouper": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Honeycomb grouper": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Potato cod": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Yellow longnose butterflyfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Dogtooth tuna": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Checkerboard wrasse": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Pennant coralfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Schooling bannerfish": {
+    "Schooling bannerfish": {
+      "body": "The Schooling bannerfish has a compressed, oval-shaped body with a pointed snout, reaching a maximum length of approximately 30 centimeters (12 inches) and a maximum weight of 230 grams (8.1 ounces).",
+      "colors": "The Schooling bannerfish displays a striking yellow body with 3 broad, vertical black stripes that fade into a brownish-gray color towards the posterior end of the body. The black stripes are often bordered by thin, white stripes, creating a distinctive pattern.",
+      "features": "This species has long, pointed dorsal and anal fins, with the dorsal fin being significantly longer than the anal fin. The caudal fin is forked, and the pectoral fins are long and pointed. The scales are small and cycloid, providing a smooth texture to the body. The head is pointed, with a small mouth and a protruding lower jaw.",
+      "unique_marks": "A distinctive characteristic of the Schooling bannerfish is the long, banner-like dorsal fin that extends far beyond the body, often reaching up to 2 times the length of the body. This unique feature is used for communication and mating purposes."
+    }
+  },
+  "Bigeye snapper": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Humpnose unicorn": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Red fire goby": {
+    "body": "The Red fire goby has a elongated, torpedo-shaped body that typically grows to approximately 2-3 inches (5-7.5 cm) in length.",
+    "colors": "The Red fire goby exhibits vibrant red to orange-red coloration, often with a yellow or white belly. It has blue or purple highlights on its fins, and its body may display a subtle, darker red or brown stripe running along its lateral line.",
+    "features": "The Red fire goby has large, fan-shaped dorsal and anal fins, and its pectoral fins are relatively small. Its scales are small and smooth, and its head shape is rounded with relatively large eyes.",
+    "unique_marks": "One of the distinctive features of the Red fire goby is the presence of long, thin filaments extending from the tips of its dorsal and anal fins, which can be up to half the length of its body. These filaments are often used for display purposes and can help distinguish the Red fire goby from other similar species."
+  },
+  "Palette surgeonfish": {
+    "body": "The Palette surgeonfish has an oval-shaped body that is moderately compressed laterally, with a maximum length of approximately 24 centimeters (9.4 inches).",
+    "colors": "The Palette surgeonfish displays a striking coloration pattern, featuring a blue body with yellow highlights on the dorsal and anal fins, as well as yellow stripes on the head and a yellow belly. The blue body is marked with horizontal yellow stripes, and the caudal fin is yellow with blue stripes.",
+    "features": "The Palette surgeonfish has a distinctive head shape with a long, pointed snout. It has a single dorsal fin with 9 spines and 25-27 soft rays, and the anal fin has 3 spines and 23-25 soft rays. The body is covered in small, overlapping scales.",
+    "unique_marks": "A unique identifying characteristic of the Palette surgeonfish is the presence of a pair of scalpel-like spines on either side of the caudal peduncle, which are used for defense purposes."
+  },
+  "Black-sided hawkfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Teira batfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Indian Ocean oriental sweetlips": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Blue ring angelfish": {
+    "body": "The Blue ring angelfish has an oval-shaped body, compressed laterally, with a medium size, typically reaching a length of 10-15 inches (25-38 cm) and a height of about 6-8 inches (15-20 cm).",
+    "colors": "The body is predominantly yellow with bright blue stripes, with a distinctive blue ring around the eyes and blue highlights on the fins and scales. The dorsal and anal fins have yellow and blue stripes, while the caudal fin is yellow with blue highlights.",
+    "features": "The Blue ring angelfish has large, flowing fins and a small mouth. The scales are small and overlapping, giving a smooth appearance to the body. The head is rounded, with a short snout and a distinctive blue ring around the eyes.",
+    "unique_marks": "The bright blue ring around the eyes is a unique identifying characteristic of the Blue ring angelfish, making it distinguishable from other angelfish species."
+  },
+  "Emperor angelfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Blueface angelfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Royal angelfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Streaked spinefoot": {
+    "Streaked spinefoot": {
+      "body": "The Streaked spinefoot has an oval-shaped body, laterally compressed, with a moderate size that typically ranges from 15 to 30 centimeters (6 to 12 inches) in length.",
+      "colors": "The body is generally grayish-brown to olive-green in color, with 5-6 dark brown to black vertical stripes or streaks running along the sides, and a pale yellowish-brown belly. The stripes may be more pronounced in juveniles and fade with age.",
+      "features": "The Streaked spinefoot has a distinctive spine on the dorsal fin, which is long and pointed. The dorsal fin is also divided into two parts, with the first part having 12-13 spines and the second part having 20-23 soft rays. The anal fin has 3 spines and 20-23 soft rays. The scales are ctenoid, and the head is moderately pointed.",
+      "unique_marks": "A unique identifying characteristic of the Streaked spinefoot is the presence of a small, dark brown to black spot at the base of the pectoral fin, and the distinctive streaks or stripes running along the sides of the body."
+    }
+  },
+  "Great barracuda": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Yellowtail barracuda": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Pickhandle barracuda": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Blackfin barracuda": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Moorish idol": {
+    "Moorish idol": {
+      "body": "The Moorish idol has a flat, disk-shaped body with a distinctive profile. Adults typically grow to an average length of 15-20 cm (6-8 inches), with a maximum recorded length of 23 cm (9 inches).",
+      "colors": "The Moorish idol is known for its striking coloration, featuring a predominantly black body with bright yellow stripes running vertically along its sides, and white stripes running horizontally along its belly. The dorsal and anal fins are yellow with black tips.",
+      "features": "The Moorish idol has long, pointed dorsal and anal fins, which are quite striking. Its scales are small and smooth, providing a sleek appearance. The head is flat and broad, with a small mouth and a protruding snout.",
+      "unique_marks": "One of the most distinctive features of the Moorish idol is the long, pointed snout and the long, trailing dorsal fin, which extends far beyond the base of the tail. The combination of its unique coloration and fin shape make it easily recognizable."
+    }
+  },
+  "Little dragonfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Indian mackerel": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Trumpetfish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  },
+  "Ornate ghost pipefish": {
+    "body": "",
+    "colors": "",
+    "features": "",
+    "unique_marks": ""
+  }
+}
