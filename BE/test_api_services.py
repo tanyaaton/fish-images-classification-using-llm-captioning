@@ -36,6 +36,8 @@ def test_search_clarks_anemonefish_appearance():
     print("/search Clark's anemonefish response:", response.status_code)
     print(response_data)
 
+
+
 def test_image_captioning_indian_mackerel():
     """Test image captioning endpoint with Indian mackerel image"""
     url = f"{BASE_URL}/image_captioning"

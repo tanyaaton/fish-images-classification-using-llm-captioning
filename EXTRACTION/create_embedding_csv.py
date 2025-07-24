@@ -2,7 +2,6 @@
 import os
 import pandas as pd
 from physical_description_service import PhysicalDescriptionService
-
 # Placeholder for CSV creation logic
 
 def create_embedding_csv(output_path):
@@ -72,6 +71,7 @@ def create_embedding_csv(output_path):
         rows.append({
             "Fish Name": fish,
             "Physical Description": fish_descriptions[fish]["body"],
+            "Physical Description": "",  # Placeholder, to be filled later
             "Object Names": ", ".join(object_names)
         })
 
