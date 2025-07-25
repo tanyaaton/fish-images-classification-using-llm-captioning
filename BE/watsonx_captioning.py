@@ -14,16 +14,6 @@ project_id = os.getenv("PROJECT_ID", None)
 ibm_cloud_iam_url = os.getenv("IAM_IBM_CLOUD_URL", None)
 chat_url = os.getenv("IBM_WATSONX_AI_INFERENCE_URL", None)
 
-conn_ibm_cloud_iam = http.client.HTTPSConnection(ibm_cloud_iam_url)
-payload = "grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey&apikey="+watsonx_api_key
-headers = { 'Content-Type': "application/x-www-form-urlencoded" }
-conn_ibm_cloud_iam.request("POST", "/identity/token", payload, headers)
-res = conn_ibm_cloud_iam.getresponse()
-data = res.read()
-decoded_json=json.loads(data.decode("utf-8"))
-access_token=decoded_json["access_token"]
-
-
 
 ### input and descripe input image
 
@@ -35,6 +25,15 @@ def convert_image_to_base64(image_path="fish-pictures/fish-1.png"):
 
 
 def get_fish_description_from_watsonxai(pic_string):
+    conn_ibm_cloud_iam = http.client.HTTPSConnection(ibm_cloud_iam_url)
+    payload = "grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey&apikey="+watsonx_api_key
+    headers = { 'Content-Type': "application/x-www-form-urlencoded" }
+    conn_ibm_cloud_iam.request("POST", "/identity/token", payload, headers)
+    res = conn_ibm_cloud_iam.getresponse()
+    data = res.read()
+    decoded_json=json.loads(data.decode("utf-8"))
+    access_token=decoded_json["access_token"]
+
     system_content ="""You always answer the questions with markdown formatting using GitHub syntax. The markdown formatting you support: headings, bold, italic, links, tables, lists, code blocks, and blockquotes. You must omit that you answer the questions with markdown.\n\nAny HTML tags must be wrapped in block quotes, for example ```<html>```. You will be penalized for not rendering code in block quotes.\n\nWhen returning code blocks, specify language.\n\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. \nYour answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don'\''t know the answer to a question, please don'\''t share false information."""
     user_message = """Please provide a detailed description of the fish in the image focusing on the following aspects:
     1. Body shape and size
