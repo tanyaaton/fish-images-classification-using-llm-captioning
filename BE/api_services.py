@@ -50,7 +50,9 @@ def search():
 def image_captioning():
     try:
         data = request.get_json()
+        print(f"Received data for image_captioning: {data}")
         image = data.get("image", "")
+        print(f"Image received: {image}")
         if image:
             # Try to fetch from COS if image is an object key
             api_key = os.environ.get('IBM_COS_API_KEY')
