@@ -57,6 +57,7 @@ def search():
 def image_captioning():
     try:
         data = request.get_json()
+        print(f"Received data for image_captioning: {data}")
         image = data.get("image", "")
         logging.info(f"Received image: {image}")
         if not image:
