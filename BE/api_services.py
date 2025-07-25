@@ -53,26 +53,21 @@ def image_captioning():
         image = data.get("image", "")
         if image:
             # Try to fetch from COS if image is an object key
-            try:
-                api_key = os.environ.get('IBM_COS_API_KEY')
-                resource_instance_id = os.environ.get('IBM_COS_RESOURCE_INSTANCE_ID')
-                endpoint_url = os.environ.get('IBM_COS_ENDPOINT')
-                cos = ibm_boto3.client(
-                    's3',
-                    ibm_api_key_id=api_key,
-                    ibm_service_instance_id=resource_instance_id,
-                    config=Config(signature_version='oauth'),
-                    endpoint_url=endpoint_url
-                )
-                response = cos.get_object(Bucket='fish-image-bucket', Key=image)
-                image_bytes = response['Body'].read()
-                # Convert bytes to base64 string
-                import base64
-                pic_string = base64.b64encode(image_bytes).decode('utf-8')
-            except Exception as cos_e:
-                # fallback to local path if not found in COS
-                image_path = image
-                pic_string = convert_image_to_base64(image_path)
+            api_key = os.environ.get('IBM_COS_API_KEY')
+            resource_instance_id = os.environ.get('IBM_COS_RESOURCE_INSTANCE_ID')
+            endpoint_url = os.environ.get('IBM_COS_ENDPOINT')
+            cos = ibm_boto3.client(
+                's3',
+                ibm_api_key_id=api_key,
+                ibm_service_instance_id=resource_instance_id,
+                config=Config(signature_version='oauth'),
+                endpoint_url=endpoint_url
+            )
+            response = cos.get_object(Bucket='fish-image-bucket', Key=image)
+            image_bytes = response['Body'].read()
+            # Convert bytes to base64 string
+            import base64
+            pic_string = base64.b64encode(image_bytes).decode('utf-8')
         else:
             # no image provided, return error
             return jsonify({"error": "No image provided"}), 400

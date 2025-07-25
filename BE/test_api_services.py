@@ -1,6 +1,7 @@
 import requests
 import json
 
+# BASE_URL = "http://127.0.0.1:8080"
 BASE_URL = "https://fish-image-classify.1xlkl2nudnhu.us-south.codeengine.appdomain.cloud"
 
 def test_search_tropical_fish_query():
@@ -36,15 +37,14 @@ def test_search_clarks_anemonefish_appearance():
     print("/search Clark's anemonefish response:", response.status_code)
     print(response_data)
 
-
-
 def test_image_captioning_indian_mackerel():
     """Test image captioning endpoint with Indian mackerel image"""
     url = f"{BASE_URL}/image_captioning"
     # Use a real COS object key for testing
     payload = {"image": "user-upload/1753251768437-clownfish.jpg"}
     response = requests.post(url, json=payload)
-    
+    if response.status_code != 200:
+        print("Error response text:", response.text)
     # Assertions
     assert response.status_code == 200, f"Expected status 200, got {response.status_code}"
     response_data = response.json()
@@ -80,9 +80,9 @@ def test_generation_lionfish_appearance_with_chat_history():
 if __name__ == "__main__":
     print("Testing /search with tropical fish query...")
     test_search_tropical_fish_query()
-    print("\nTesting /search with Clark's anemonefish appearance query...")
-    test_search_clarks_anemonefish_appearance()
+    # print("\nTesting /search with Clark's anemonefish appearance query...")
+    # test_search_clarks_anemonefish_appearance()
     print("\nTesting /image_captioning with Indian mackerel...")
     test_image_captioning_indian_mackerel()
-    print("\nTesting /generation with lionfish appearance and chat history...")
-    test_generation_lionfish_appearance_with_chat_history()
+    # print("\nTesting /generation with lionfish appearance and chat history...")
+    # test_generation_lionfish_appearance_with_chat_history()
