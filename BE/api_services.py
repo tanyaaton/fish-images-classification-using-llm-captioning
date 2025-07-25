@@ -49,7 +49,7 @@ def search():
         return jsonify({"input": text_input, "results": top_n_fish})
     except Exception as e:
         print(f"Error in search: {e}")
-        logging.error(f"Error in generation: {e}")
+        app.logger.error(f"Error in generation: {e}")
         return jsonify(fallback_response("search", str(e))), 503
 
 # This service might take a while to respond due to image processing
@@ -57,16 +57,15 @@ def search():
 def image_captioning():
     try:
         data = request.get_json()
-        print(f"Received data for image_captioning: {data}")
         image = data.get("image", "")
-        logging.info(f"Received image: {image}")
+        app.logger.info(f"Received image: {image}")
         if not image:
-            logging.error("No image provided in request")
+            app.logger.error("No image provided in request")
             return jsonify({"error": "No image provided"}), 400
 
         # COS fetch block
         try:
-            logging.info("loading COS credentials")
+            app.logger.info("loading COS credentials")
             api_key = os.environ.get('IBM_COS_API_KEY')
             resource_instance_id = os.environ.get('IBM_COS_RESOURCE_INSTANCE_ID')
             endpoint_url = os.environ.get('IBM_COS_ENDPOINT')
@@ -77,32 +76,32 @@ def image_captioning():
                 config=Config(signature_version='oauth'),
                 endpoint_url=endpoint_url
             )
-            logging.info(f"Fetching image from COS: {image}")
+            app.logger.info(f"Fetching image from COS: {image}")
             response = cos.get_object(Bucket='fish-image-bucket', Key=image)
             image_bytes = response['Body'].read()
         except Exception as cos_e:
-            logging.error(f"COS fetch error: {cos_e}")
+            app.logger.error(f"COS fetch error: {cos_e}")
             return jsonify(fallback_response("image_captioning", f"COS fetch error: {cos_e}")), 503
 
         # Base64 conversion block
         try:
-            logging.info("Converting image to base64")
+            app.logger.info("Converting image to base64")
             pic_string = base64.b64encode(image_bytes).decode('utf-8')
         except Exception as b64_e:
-            logging.error(f"Base64 conversion error: {b64_e}")
+            app.logger.error(f"Base64 conversion error: {b64_e}")
             return jsonify(fallback_response("image_captioning", f"Base64 error: {b64_e}")), 503
 
         # WatsonX call block
         try:
-            logging.info("Calling WatsonX for image captioning")
+            app.logger.info("Calling WatsonX for image captioning")
             caption = get_fish_description_from_watsonxai(pic_string)
         except Exception as ai_e:
-            logging.error(f"WatsonX error: {ai_e}")
+            app.logger.error(f"WatsonX error: {ai_e}")
             return jsonify(fallback_response("image_captioning", f"WatsonX error: {ai_e}")), 503
 
         return jsonify({"caption": caption})
     except Exception as e:
-        logging.error(f"Unknown error in image_captioning: {e}")
+        app.logger.error(f"Unknown error in image_captioning: {e}")
         return jsonify(fallback_response("image_captioning", str(e))), 503
 
 @app.route("/generation", methods=["POST"])
@@ -116,7 +115,7 @@ def generation():
         return jsonify({"response": response_text})
     except Exception as e:
         print(f"Error in image_captioning: {e}")
-        logging.error(f"Error in generation: {e}")
+        app.logger.error(f"Error in generation: {e}")
         return jsonify(fallback_response("generation", str(e))), 503
     
 

@@ -1,8 +1,8 @@
 import requests
 import json
 
-# BASE_URL = "http://127.0.0.1:8080"
-BASE_URL = "https://fish-image-classify.1xlkl2nudnhu.us-south.codeengine.appdomain.cloud"
+BASE_URL = "http://127.0.0.1:8080"
+# BASE_URL = "https://fish-image-classify.1xlkl2nudnhu.us-south.codeengine.appdomain.cloud"
 
 def test_search_tropical_fish_query():
     """Test search endpoint with general tropical fish query"""
