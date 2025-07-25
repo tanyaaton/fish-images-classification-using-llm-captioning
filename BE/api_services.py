@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 import ibm_boto3
 from ibm_botocore.client import Config
 import io
+import logging
+import base64
 
 
 load_dotenv()
@@ -22,8 +24,11 @@ emb = EmbeddingService('watsonx')
 app = Flask(__name__)
 
 # Dummy fallback response
-def fallback_response(service_name):
-    return {"error": f"{service_name} service unavailable", "fallback": True}
+def fallback_response(service_name, error_msg=None):
+    resp = {"error": f"{service_name} service unavailable", "fallback": True}
+    if error_msg:
+        resp["details"] = error_msg
+    return resp
 
 @app.route("/live", methods=["GET"])
 def live():
@@ -43,7 +48,9 @@ def search():
         top_n_fish = return_top_n_fish(hits, n=5)
         return jsonify({"input": text_input, "results": top_n_fish})
     except Exception as e:
-        return jsonify(fallback_response("search")), 503
+        print(f"Error in search: {e}")
+        logging.error(f"Error in generation: {e}")
+        return jsonify(fallback_response("search", str(e))), 503
 
 # This service might take a while to respond due to image processing
 @app.route("/image_captioning", methods=["POST"])
@@ -51,8 +58,14 @@ def image_captioning():
     try:
         data = request.get_json()
         image = data.get("image", "")
-        if image:
-            # Try to fetch from COS if image is an object key
+        logging.info(f"Received image: {image}")
+        if not image:
+            logging.error("No image provided in request")
+            return jsonify({"error": "No image provided"}), 400
+
+        # COS fetch block
+        try:
+            logging.info("loading COS credentials")
             api_key = os.environ.get('IBM_COS_API_KEY')
             resource_instance_id = os.environ.get('IBM_COS_RESOURCE_INSTANCE_ID')
             endpoint_url = os.environ.get('IBM_COS_ENDPOINT')
@@ -63,19 +76,33 @@ def image_captioning():
                 config=Config(signature_version='oauth'),
                 endpoint_url=endpoint_url
             )
+            logging.info(f"Fetching image from COS: {image}")
             response = cos.get_object(Bucket='fish-image-bucket', Key=image)
             image_bytes = response['Body'].read()
-            # Convert bytes to base64 string
-            import base64
+        except Exception as cos_e:
+            logging.error(f"COS fetch error: {cos_e}")
+            return jsonify(fallback_response("image_captioning", f"COS fetch error: {cos_e}")), 503
+
+        # Base64 conversion block
+        try:
+            logging.info("Converting image to base64")
             pic_string = base64.b64encode(image_bytes).decode('utf-8')
-        else:
-            # no image provided, return error
-            return jsonify({"error": "No image provided"}), 400
-        caption = get_fish_description_from_watsonxai(pic_string)
+        except Exception as b64_e:
+            logging.error(f"Base64 conversion error: {b64_e}")
+            return jsonify(fallback_response("image_captioning", f"Base64 error: {b64_e}")), 503
+
+        # WatsonX call block
+        try:
+            logging.info("Calling WatsonX for image captioning")
+            caption = get_fish_description_from_watsonxai(pic_string)
+        except Exception as ai_e:
+            logging.error(f"WatsonX error: {ai_e}")
+            return jsonify(fallback_response("image_captioning", f"WatsonX error: {ai_e}")), 503
+
         return jsonify({"caption": caption})
     except Exception as e:
-        print(f"Error in image_captioning: {e}")
-        return jsonify(fallback_response("image_captioning")), 503
+        logging.error(f"Unknown error in image_captioning: {e}")
+        return jsonify(fallback_response("image_captioning", str(e))), 503
 
 @app.route("/generation", methods=["POST"])
 def generation():
@@ -87,9 +114,9 @@ def generation():
         response_text = get_generated_response(question, chat_history)
         return jsonify({"response": response_text})
     except Exception as e:
-        import logging
+        print(f"Error in image_captioning: {e}")
         logging.error(f"Error in generation: {e}")
-        return jsonify(fallback_response("generation")), 503
+        return jsonify(fallback_response("generation", str(e))), 503
     
 
 if __name__ == "__main__":
