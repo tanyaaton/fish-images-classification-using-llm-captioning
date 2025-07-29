@@ -7,6 +7,9 @@ on:
       - 'BE/**'
       - 'snowflake-embedding/**'
       - '.github/workflows/docker-image.yml'
+      - 'EXTRACTION/**'
+      - 'INGESTION/**'
+
 
 env:
   IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
