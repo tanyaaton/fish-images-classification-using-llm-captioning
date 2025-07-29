@@ -1,7 +1,7 @@
 # This script will be used to create a formatted CSV for embedding purposes.
 import os
 import pandas as pd
-from physical_description_service import PhysicalDescriptionService
+from physical_description_service import get_fish_description_from_watsonxai
 # Placeholder for CSV creation logic
 
 def create_embedding_csv(output_path):
@@ -15,7 +15,6 @@ def create_embedding_csv(output_path):
             fish_names.append(row["Fish Name"])
 
     # get fish physical descriptions with checkpointing
-    description_service = PhysicalDescriptionService()
     import json
     checkpoint_path = "fish_descriptions_checkpoint.json"
     # Try to load checkpoint if exists
@@ -27,32 +26,16 @@ def create_embedding_csv(output_path):
         fish_descriptions = {}
 
     for fish_name in fish_names:
-        if fish_name in fish_descriptions and isinstance(fish_descriptions[fish_name], dict) and fish_descriptions[fish_name].get("body"):
+        if fish_name in fish_descriptions and isinstance(fish_descriptions[fish_name], str) and fish_descriptions[fish_name]:
             # Already processed, skip
             print(f"Skipping {fish_name}, already processed.")
             continue
         try:
-            description_str = description_service.get_fish_description_from_name(fish_name)
-            # Try to parse the returned string as JSON (single quotes to double quotes)
-            try:
-                description = json.loads(description_str.replace("'", '"'))
-            except Exception as je:
-                print(f"Error parsing JSON for {fish_name}: {je}\nRaw response: {description_str}")
-                description = {
-                    "body": "",
-                    "colors": "",
-                    "features": "",
-                    "unique_marks": ""
-                }
+            description = get_fish_description_from_watsonxai(fish_name)
             fish_descriptions[fish_name] = description
         except Exception as e:
             print(f"Error getting description for {fish_name}: {e}")
-            fish_descriptions[fish_name] = {
-                "body": "",
-                "colors": "",
-                "features": "",
-                "unique_marks": ""
-            }
+            fish_descriptions[fish_name] = "body: , colors: , features: , unique_marks: "
         # Save checkpoint after each fish
         with open(checkpoint_path, "w", encoding="utf-8") as f:
             json.dump(fish_descriptions, f, ensure_ascii=False, indent=2)
@@ -70,8 +53,7 @@ def create_embedding_csv(output_path):
         ]
         rows.append({
             "Fish Name": fish,
-            "Physical Description": fish_descriptions[fish]["body"],
-            "Physical Description": "",  # Placeholder, to be filled later
+            "Physical Description": fish_descriptions[fish],
             "Object Names": ", ".join(object_names)
         })
 
