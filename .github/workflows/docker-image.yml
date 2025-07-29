@@ -95,6 +95,3 @@ jobs:
             echo "Application does not exist, creating..."
             ibmcloud ce application create --name $app_name --cpu 2 --memory 8G --es 8G --min-scale 1 --env-from-secret $app_name -v public --image $image_full --port 8080 --registry-secret ibmcloud --wait-timeout 12000 --timeout 600 --probe-ready type=tcp --probe-ready port=8080
           fi
-
-
-,initialDelaySeconds:10,timeoutSeconds:5,periodSeconds:10,failureThreshold:10
