@@ -67,8 +67,6 @@ jobs:
         run: |
           ibmcloud ce project select --id "${{ secrets.IBM_CLOUD_PROJECT }}"
 
- 
-
       - name: Build Docker image
         run: |
           docker build -t ${{ matrix.context.image }} ${{ matrix.context.path }}
