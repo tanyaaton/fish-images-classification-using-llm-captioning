@@ -52,7 +52,7 @@ def text_search_fish_description_match(input_image_description, index_name):
     search_body = {
         "query": {
             "match": {
-                "general_description": {
+                "physical_description": {
                     "query": input_image_description,
                     "fuzziness": "AUTO"  # Handles typos and variations
                 }
@@ -72,13 +72,37 @@ def text_search_fish_description_match(input_image_description, index_name):
 def return_top_n_fish(elastic_hits,n=5):
     top_n_fish = []
     for i in range(n):
-        fish_name = elastic_hits['hits']['hits'][i]['_source']['fish_name']
-        fish_description = elastic_hits['hits']['hits'][i]['_source']['general_description']
+        hit = elastic_hits['hits']['hits'][i]['_source']
         fish_score = elastic_hits['hits']['hits'][i]['_score']
         top_n_fish.append({
-                    # "rank": fish_rank,
-                    "fish_name": fish_name,
-                    "description": fish_description,
-                    "score": fish_score
-                })
+            "fish_name": hit.get('fish_name'),
+            "thai_fish_name": hit.get('thai_fish_name'),
+            "scientific_name": hit.get('scientific_name'),
+            "order_name": hit.get('order_name'),
+            "general_description": hit.get('general_description'),
+            "physical_description": hit.get('physical_description'),
+            "habitat": hit.get('habitat'),
+            "avg_length_cm": hit.get('avg_length_cm'),
+            "avg_age_years": hit.get('avg_age_years'),
+            "avg_depthlevel_m": hit.get('avg_depthlevel_m'),
+            "avg_weight_kg": hit.get('avg_weight_kg'),
+            "score": fish_score
+        })
+    return top_n_fish
+
+def return_top_n_fish_simple(elastic_hits, n=5):
+    """
+    Returns top N fish from Elasticsearch hits with basic fields
+    """
+    top_n_fish = []
+    for i in range(n):
+        hit = elastic_hits['hits']['hits'][i]['_source']
+        fish_score = elastic_hits['hits']['hits'][i]['_score']
+        top_n_fish.append({
+            "fish_name": hit.get('fish_name'),
+            "thai_fish_name": hit.get('thai_fish_name'),
+            "scientific_name": hit.get('scientific_name'),
+            "order_name": hit.get('order_name'),
+            "score": fish_score
+        })
     return top_n_fish

@@ -38,20 +38,26 @@ class ElasticsearchManager:
             mappings = {
                 "mappings": {
                     "properties": {
-                        "fish_name": {
-                            "type": "text"
-                        },
-                        "general_description": {
-                            "type": "text"  # 'semantic_text' is not valid; use 'text'
-                        },
-                        "image_links": {
-                            "type": "text"
-                        },
-                        "embedding": {
+                        "fish_name": {"type": "text"},
+                        "thai_fish_name": {"type": "text"},
+                        "scientific_name": {"type": "text"},
+                        "order_name": {"type": "text"},
+                        "general_description": {"type": "text"},
+                        "physical_description": {"type": "text"},
+                        "habitat": {"type": "text"},
+                        "avg_length_cm": {"type": "float"},
+                        "avg_age_years": {"type": "float"},
+                        "avg_depthlevel_m": {"type": "float"},
+                        "avg_weight_kg": {"type": "float"},
+                        "general_description_embedding": {
                             "type": "dense_vector",
-                            "dims": 1024,  # Adjust the dimension based on your model's output
-                            "similarity": "cosine",
-                            "index": True  # Set to True + additional settings for ANN search
+                            "dims": 1024,
+                            "similarity": "cosine"
+                        },
+                        "physical_description_embedding": {
+                            "type": "dense_vector",
+                            "dims": 1024,
+                            "similarity": "cosine"
                         }
                     }
                 }
@@ -124,9 +130,18 @@ class ElasticsearchManager:
                 "_index": index_name,
                 "_source": {
                     "fish_name": row["Fish Name"],
-                    "general_description": row["Summary Description"],
-                    "image_links": row["Image Links"],
-                    "embedding": row["embedding"]
+                    "thai_fish_name": row["Thai Fish Name"],
+                    "scientific_name": row["Scientific Name"],
+                    "order_name": row["Order Name"],
+                    "general_description": row["General Description"],
+                    "physical_description": row["Physical Description"],
+                    "habitat": row["habitat"],
+                    "avg_length_cm": row["Avg Length(cm)"],
+                    "avg_age_years": row["Avg Age(years)"],
+                    "avg_depthlevel_m": row["Avg DepthLevel(m)"],
+                    "avg_weight_kg": row["Avg Weight(kg)"],
+                    "general_description_embedding": row["general_description_embedding"],
+                    "physical_description_embedding": row["physical_description_embedding"]
                 }
             }
             for _, row in df.iterrows()

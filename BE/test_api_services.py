@@ -79,12 +79,41 @@ def test_generation_lionfish_appearance_with_chat_history():
     print("/generation lionfish appearance response:", response.status_code)
     print(response_data)
 
+def test_image_identification_clownfish():
+    """Test image cap endpoint with clownfish image and search pipeline"""
+    # Step 1: Caption the image
+    caption_url = f"{BASE_URL}/image_captioning"
+    payload = {"image": "user-upload/1753505324887-whale-shark.png"}
+    caption_response = requests.post(caption_url, json=payload)
+    assert caption_response.status_code == 200, f"Expected status 200, got {caption_response.status_code}"
+    caption_data = caption_response.json()
+    assert isinstance(caption_data, dict), "Caption response should be a dictionary"
+    assert "caption" in caption_data, "Caption key missing in response"
+    caption_text = caption_data["caption"]
+    print("Image caption:", caption_text)
+
+    # Step 2: Use the caption to search for fish
+    search_url = f"{BASE_URL}/search"
+    search_payload = {"text": caption_text}
+    search_response = requests.post(search_url, json=search_payload)
+    assert search_response.status_code == 200, f"Expected status 200, got {search_response.status_code}"
+    search_data = search_response.json()
+    assert isinstance(search_data, dict), "Search response should be a dictionary"
+    assert "results" in search_data, "Results key missing in search response"
+    assert len(search_data["results"]) > 0, "Search results should not be empty"
+    print("/search clownfish search response:", search_response.status_code)
+    print(search_data)
+
+
+
 if __name__ == "__main__":
     print("Testing /search with tropical fish query...")
     test_search_tropical_fish_query()
-    # print("\nTesting /search with Clark's anemonefish appearance query...")
-    # test_search_clarks_anemonefish_appearance()
+    print("\nTesting /search with Clark's anemonefish appearance query...")
+    test_search_clarks_anemonefish_appearance()
     print("\nTesting /image_captioning with Indian mackerel...")
     test_image_captioning_indian_mackerel()
-    # print("\nTesting /generation with lionfish appearance and chat history...")
-    # test_generation_lionfish_appearance_with_chat_history()
+    print("\nTesting /generation with lionfish appearance and chat history...")
+    test_generation_lionfish_appearance_with_chat_history()
+    print("\nTesting /image_identification with clownfish image...")
+    test_image_identification_clownfish()
