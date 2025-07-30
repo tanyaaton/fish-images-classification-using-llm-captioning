@@ -35,18 +35,7 @@ def get_fish_description_from_watsonxai(pic_string):
     access_token=decoded_json["access_token"]
 
     system_content ="""You always answer the questions with markdown formatting using GitHub syntax. The markdown formatting you support: headings, bold, italic, links, tables, lists, code blocks, and blockquotes. You must omit that you answer the questions with markdown.\n\nAny HTML tags must be wrapped in block quotes, for example ```<html>```. You will be penalized for not rendering code in block quotes.\n\nWhen returning code blocks, specify language.\n\nYou are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. \nYour answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don'\''t know the answer to a question, please don'\''t share false information."""
-    user_message = """Please provide a detailed description of the fish in the image focusing on the following aspects:
-    1. Body shape and size
-    2. Coloration patterns and markings
-    3. Distinctive features (fins, scales, head shape, etc.)
-    4. Any unique identifying characteristics
-    Return your answer only in JSON format as follows, do not provide any additional text or explanation:
-    {
-        'body': 'description of body shape and approximate size',
-        'colors': 'detailed description of colors and patterns',
-        'features': 'description of distinctive features',
-        'unique_marks': 'any unique identifying characteristics'
-    }"""
+    user_message = """Please provide a detailed description of what the image depicts and what you think it"""
 
     body = {
     "messages": [
