@@ -79,11 +79,11 @@ def test_generation_lionfish_appearance_with_chat_history():
     print("/generation lionfish appearance response:", response.status_code)
     print(response_data)
 
-def test_image_identification_clownfish():
-    """Test image cap endpoint with clownfish image and search pipeline"""
+def test_image_identification():
+    """Test image cap endpoint with specific image and search pipeline"""
     # Step 1: Caption the image
     caption_url = f"{BASE_URL}/image_captioning"
-    payload = {"image": "user-upload/1753505324887-whale-shark.png"}
+    payload = {"image": "user-upload/1753849543267-17538495276807584572416837090045.jpg"}
     caption_response = requests.post(caption_url, json=payload)
     assert caption_response.status_code == 200, f"Expected status 200, got {caption_response.status_code}"
     caption_data = caption_response.json()
@@ -107,13 +107,13 @@ def test_image_identification_clownfish():
 
 
 if __name__ == "__main__":
-    print("Testing /search with tropical fish query...")
-    test_search_tropical_fish_query()
-    print("\nTesting /search with Clark's anemonefish appearance query...")
-    test_search_clarks_anemonefish_appearance()
-    print("\nTesting /image_captioning with Indian mackerel...")
-    test_image_captioning_indian_mackerel()
-    print("\nTesting /generation with lionfish appearance and chat history...")
-    test_generation_lionfish_appearance_with_chat_history()
-    print("\nTesting /image_identification with clownfish image...")
-    test_image_identification_clownfish()
+    # print("Testing /search with tropical fish query...")
+    # test_search_tropical_fish_query()
+    # print("\nTesting /search with Clark's anemonefish appearance query...")
+    # test_search_clarks_anemonefish_appearance()
+    # print("\nTesting /image_captioning with Indian mackerel...")
+    # test_image_captioning_indian_mackerel()
+    # print("\nTesting /generation with lionfish appearance and chat history...")
+    # test_generation_lionfish_appearance_with_chat_history()
+    print("\nTesting /image_identification with image...")
+    test_image_identification()
