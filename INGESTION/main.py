@@ -16,21 +16,25 @@ es_username = os.environ["es_username"]
 es_password = os.environ["es_password"]
 
 #--------ingestion to elasticsearch----------------
-index_name = 'fish_index_v3'
+index_name = 'fish_index_v4'
 
-# csv file must have at least 2 columns: fish_name, general_description
-df = pd.read_csv("../EXTRACTION/DATA/fish-description-files/Marine_Fish_Species_Full_Description_test.csv")
+# csv file must have at least 2 columns: fish_name, general_description, physical_description
+df = pd.read_csv("../EXTRACTION/DATA/fish-description-files/Marine_Fish_Species_Formatted_updated.csv")
 
- # generate description embeddings
+# generate embeddings for both general and physical description
 emb = EmbeddingService('watsonx') # Use the online embedding service
-embeddings = emb.embed_text(df['Summary Description'])
-print('---------------------')
-print(embeddings)
-list_of_embeddings = list(embeddings)
-print("Embedding length:", len(list_of_embeddings))
-print(len(list_of_embeddings[0]))
-df['embedding'] = list(embeddings)
+general_embeddings = emb.embed_text(df['General Description'])
+physical_embeddings = emb.embed_text(df['Physical Description'])
+df['general_description_embedding'] = list(general_embeddings)
+df['physical_description_embedding'] = list(physical_embeddings)
 
+print('---------------------')
+print("General Description Embeddings:", general_embeddings)
+print("Physical Description Embeddings:", physical_embeddings)
+print("Embedding length (general):", len(general_embeddings))
+print("Embedding length (physical):", len(physical_embeddings))
+print("Single embedding length (general):", len(general_embeddings[0]))
+print("Single embedding length (physical):", len(physical_embeddings[0]))
 print(df.head())
 
 esm = ElasticsearchManager(es_endpoint, es_username, es_password)

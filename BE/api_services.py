@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from watsonx_captioning import convert_image_to_base64, get_fish_description_from_watsonxai
 from elasticsearch_query import ElasticsearchQuery
 from embedding_service import EmbeddingService
-from function import return_top_n_fish
+from function import return_top_n_fish, return_top_n_fish_simple
 from generation import get_generated_response
 import os
 from dotenv import load_dotenv
@@ -17,7 +17,7 @@ load_dotenv()
 es_endpoint = os.environ["es_endpoint"]
 es_username = os.environ["es_username"]
 es_password = os.environ["es_password"]
-index_name = 'fish_index_v3'
+index_name = 'fish_index_v4'
 esq = ElasticsearchQuery(es_endpoint, es_username, es_password)
 emb = EmbeddingService('watsonx')
 
@@ -44,8 +44,9 @@ def search():
             return jsonify({"error": "No text input provided"}), 400
 
         caption_embedding = emb.embed_text(text_input)
-        hits = esq.search_embedding(index_name=index_name, embedding_field='embedding', query_vector=caption_embedding, size=5)
-        top_n_fish = return_top_n_fish(hits, n=5)
+        hits = esq.search_embedding(index_name=index_name, embedding_field='physical_description_embedding', query_vector=caption_embedding, size=5)
+        # top_n_fish = return_top_n_fish(hits, n=5)
+        top_n_fish = return_top_n_fish_simple(hits, n=5)
         return jsonify({"input": text_input, "results": top_n_fish})
     except Exception as e:
         print(f"Error in search: {e}")
