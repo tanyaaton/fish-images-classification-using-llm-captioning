@@ -173,8 +173,8 @@ def generation():
         app.logger.error(f"Error in generation: {e}")
         return jsonify(fallback_response("generation", str(e))), 503
     
-@app.route("/search_with_sciencetific_name", methods=["POST"])
-def search_with_sciencetific_name():
+@app.route("/search_with_scientific_name", methods=["POST"])
+def search_with_scientific_name():
     try:
         data = request.get_json()
         scientific_name = data.get("scientific_name", "")
@@ -198,8 +198,8 @@ def search_with_sciencetific_name():
             "message": "Success"
         }), 200
     except Exception as e:
-        print(f"Error in search_with_sciencetific_name: {e}")
-        app.logger.error(f"Error in search_with_sciencetific_name: {e}")
+        print(f"Error in search_with_scientific_name: {e}")
+        app.logger.error(f"Error in search_with_scientific_name: {e}")
         return jsonify({
             "scientific_name": scientific_name if 'scientific_name' in locals() else "",
             "fish_data": [],
