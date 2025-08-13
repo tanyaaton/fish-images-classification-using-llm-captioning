@@ -114,4 +114,4 @@ class ElasticsearchQuery:
             return count
         except Exception as e:
             print(f"✗ Count error: {e}")
-       
+

@@ -106,3 +106,21 @@ def return_top_n_fish_simple(elastic_hits, n=5):
             "score": fish_score
         })
     return top_n_fish
+
+def return_fish_info(hits):
+    fish_data = []
+    for hit in hits:
+        fish_data.append({
+            "fish_name": hit.get('fish_name'),
+            "thai_fish_name": hit.get('thai_fish_name'),
+            "scientific_name": hit.get('scientific_name'),
+            "order_name": hit.get('order_name'),
+            "general_description": hit.get('general_description'),
+            "physical_description": hit.get('physical_description'),
+            "habitat": hit.get('habitat'),
+            "avg_length_cm": hit.get('avg_length_cm'),
+            "avg_age_years": hit.get('avg_age_years'),
+            "avg_depthlevel_m": hit.get('avg_depthlevel_m'),
+            "avg_weight_kg": hit.get('avg_weight_kg')
+        })
+    return fish_data
