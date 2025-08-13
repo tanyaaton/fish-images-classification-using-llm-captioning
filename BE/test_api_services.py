@@ -56,6 +56,34 @@ def test_image_captioning_indian_mackerel():
     print("/image_captioning Indian mackerel response:", response.status_code)
     print(response_data)
 
+def test_image_identification_clownfish():
+    """Test image identification endpoint with a clownfish image"""
+    url = f"{BASE_URL}/image_identification"
+    # Use a real COS object key for testing
+    payload = {"image": "user-upload/1753251768437-clownfish.jpg"}
+    response = requests.post(url, json=payload)
+
+    # Print error response if status code is not 200
+    if response.status_code != 200:
+        print("Error response text:", response.text)
+
+    # Assertions
+    assert response.status_code == 200, f"Expected status 200, got {response.status_code}"
+    response_data = response.json()
+    assert isinstance(response_data, dict), "Response should be a dictionary"
+
+    # Validate the response structure
+    assert "image_contains_fish" in response_data, "Key 'image_contains_fish' missing in response"
+    assert "fish_details" in response_data, "Key 'fish_details' missing in response"
+
+    # If the image contains a fish, ensure fish_details is not empty
+    if response_data["image_contains_fish"]:
+        assert isinstance(response_data["fish_details"], dict), "'fish_details' should be a dictionary"
+        assert len(response_data["fish_details"]) > 0, "'fish_details' should not be empty if 'image_contains_fish' is true"
+
+    print("/image_identification clownfish response:", response.status_code)
+    print(response_data)
+
 def test_generation_lionfish_appearance_with_chat_history():
     """Test generation endpoint asking about lionfish appearance with chat history context"""
     url = f"{BASE_URL}/generation"
@@ -104,6 +132,36 @@ def test_image_identification():
     print("/search clownfish search response:", search_response.status_code)
     print(search_data)
 
+def test_search_with_scientific_name(fish_name="Arothron hispidus"):
+    """Test /search_with_sciencetific_name endpoint for single fish result"""
+    url = f"{BASE_URL}/search_with_sciencetific_name"
+    payload = {"scientific_name": fish_name}
+    response = requests.post(url, json=payload)
+    assert response.status_code == 200, f"Expected status 200, got {response.status_code}"
+    response_data = response.json()
+    assert isinstance(response_data, dict), "Response should be a dictionary"
+    assert "scientific_name" in response_data, "scientific_name key missing in response"
+    assert "fish_data" in response_data, "fish_data key missing in response"
+    assert "message" in response_data, "message key missing in response"
+    # Check that only 1 result is returned (or 0 if not found)
+    assert isinstance(response_data["fish_data"], list), "fish_data should be a list"
+    assert len(response_data["fish_data"]) <= 1, "Should return at most 1 fish"
+    # Check all expected fields except embedding and score
+    if response_data["fish_data"]:
+        fish = response_data["fish_data"][0]
+        expected_fields = [
+            "fish_name", "thai_fish_name", "scientific_name", "order_name",
+            "general_description", "physical_description", "habitat",
+            "avg_length_cm", "avg_age_years", "avg_depthlevel_m", "avg_weight_kg"
+        ]
+        for field in expected_fields:
+            assert field in fish, f"{field} missing in fish_data"
+        assert "embedding" not in fish, "embedding field should not be present"
+        assert "score" not in fish, "score field should not be present"
+    print("/search_with_sciencetific_name response:", response.status_code)
+    print(response_data)
+
+
 
 
 if __name__ == "__main__":
@@ -115,5 +173,10 @@ if __name__ == "__main__":
     # test_image_captioning_indian_mackerel()
     # print("\nTesting /generation with lionfish appearance and chat history...")
     # test_generation_lionfish_appearance_with_chat_history()
-    print("\nTesting /image_identification with image...")
-    test_image_identification()
+    # print("\nTesting /image_identification with image...")
+    # test_image_identification()
+    # print("\nTesting /search_with_sciencetific_name with fish context...")
+    # test_search_with_scientific_name("Arothron hispidus")
+    print("\nTesting /image_identification with clownfish image...")
+    test_image_identification_clownfish()
+
