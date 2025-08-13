@@ -133,8 +133,8 @@ def test_image_identification():
     print(search_data)
 
 def test_search_with_scientific_name(fish_name="Arothron hispidus"):
-    """Test /search_with_sciencetific_name endpoint for single fish result"""
-    url = f"{BASE_URL}/search_with_sciencetific_name"
+    """Test /search_with_scientific_name endpoint for single fish result"""
+    url = f"{BASE_URL}/search_with_scientific_name"
     payload = {"scientific_name": fish_name}
     response = requests.post(url, json=payload)
     assert response.status_code == 200, f"Expected status 200, got {response.status_code}"
@@ -158,7 +158,7 @@ def test_search_with_scientific_name(fish_name="Arothron hispidus"):
             assert field in fish, f"{field} missing in fish_data"
         assert "embedding" not in fish, "embedding field should not be present"
         assert "score" not in fish, "score field should not be present"
-    print("/search_with_sciencetific_name response:", response.status_code)
+    print("/search_with_scientific_name response:", response.status_code)
     print(response_data)
 
 
@@ -175,7 +175,7 @@ if __name__ == "__main__":
     # test_generation_lionfish_appearance_with_chat_history()
     # print("\nTesting /image_identification with image...")
     # test_image_identification()
-    # print("\nTesting /search_with_sciencetific_name with fish context...")
+    # print("\nTesting /search_with_scientific_name with fish context...")
     # test_search_with_scientific_name("Arothron hispidus")
     print("\nTesting /image_identification with clownfish image...")
     test_image_identification_clownfish()
