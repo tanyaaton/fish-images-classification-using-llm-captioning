@@ -139,6 +139,7 @@ def get_json_generated_image_details(pic_string):
     - `scientific_name`: The scientific name of the fish.
     - `order_name`: The order name of the fish.
     - `physical_description`: A detailed physical description of the fish.
+    - `habitat`: The habitat where the fish is typically found.
 
     If the image does not contain a fish, set `image_contains_fish` to `false` and `fish_details` to an empty object.
     """
