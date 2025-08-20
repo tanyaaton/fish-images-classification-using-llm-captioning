@@ -135,13 +135,14 @@ def get_json_generated_image_details(pic_string):
     Generate a JSON object describing the fish in the image. The JSON should include:
     - `image_contains_fish`: (true/false) - Indicates whether the image contains a fish.
     - `fish_details`: An object containing:
-    - `fish_name`: The name of the fish. (in Thai)
-    - `scientific_name`: The scientific name of the fish. (in English)
-    - `order_name`: The order name of the fish. (in English)
-    - `physical_description`: A detailed physical description of the fish. (in Thai)
-    - `habitat`: The habitat where the fish is typically found. (in Thai)
+        - `fish_name`: The name of the fish. (in Thai)
+        - `scientific_name`: The scientific name of the fish. (in English)
+        - `order_name`: The order name of the fish. (in English)
+        - `physical_description`: A detailed physical description of the fish. (in Thai)
+        - `habitat`: The habitat where the fish is typically found. (in Thai)
 
     If the image does not contain a fish, set `image_contains_fish` to `false` and `fish_details` to an empty object.
+    Ensure the response is formatted as valid JSON and only JSON and nothing else.
     """
 
     body = {
@@ -205,5 +206,5 @@ def get_json_generated_image_details(pic_string):
             raise ValueError("Fish details should not be empty if image_contains_fish is true")
         return json_data
     except json.JSONDecodeError as e:
-        raise ValueError(f"Invalid JSON response: {e}")
+        raise ValueError(f"Invalid JSON response: {e} returned: {json_string}")
 
