@@ -135,11 +135,11 @@ def get_json_generated_image_details(pic_string):
     Generate a JSON object describing the fish in the image. The JSON should include:
     - `image_contains_fish`: (true/false) - Indicates whether the image contains a fish.
     - `fish_details`: An object containing:
-    - `fish_name`: The name of the fish.
-    - `scientific_name`: The scientific name of the fish.
-    - `order_name`: The order name of the fish.
-    - `physical_description`: A detailed physical description of the fish.
-    - `habitat`: The habitat where the fish is typically found.
+    - `fish_name`: The name of the fish. (in Thai)
+    - `scientific_name`: The scientific name of the fish. (in English)
+    - `order_name`: The order name of the fish. (in English)
+    - `physical_description`: A detailed physical description of the fish. (in Thai)
+    - `habitat`: The habitat where the fish is typically found. (in Thai)
 
     If the image does not contain a fish, set `image_contains_fish` to `false` and `fish_details` to an empty object.
     """
