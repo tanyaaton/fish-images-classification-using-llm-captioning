@@ -1,8 +1,8 @@
 import requests
 import json
 
-BASE_URL = "http://127.0.0.1:8080"
-# BASE_URL = "https://fish-image-classify.1xlkl2nudnhu.us-south.codeengine.appdomain.cloud"
+# BASE_URL = "http://127.0.0.1:8080"
+BASE_URL = "https://fish-image-classify.1zaz2qlefo5k.us-south.codeengine.appdomain.cloud"
 
 def test_search_tropical_fish_query():
     """Test search endpoint with general tropical fish query"""
@@ -165,18 +165,18 @@ def test_search_with_scientific_name(fish_name="Arothron hispidus"):
 
 
 if __name__ == "__main__":
-    # print("Testing /search with tropical fish query...")
-    # test_search_tropical_fish_query()
-    # print("\nTesting /search with Clark's anemonefish appearance query...")
-    # test_search_clarks_anemonefish_appearance()
-    # print("\nTesting /image_captioning with Indian mackerel...")
-    # test_image_captioning_indian_mackerel()
-    # print("\nTesting /generation with lionfish appearance and chat history...")
-    # test_generation_lionfish_appearance_with_chat_history()
-    # print("\nTesting /image_identification with image...")
-    # test_image_identification()
-    # print("\nTesting /search_with_scientific_name with fish context...")
-    # test_search_with_scientific_name("Arothron hispidus")
+    print("Testing /search with tropical fish query...")
+    test_search_tropical_fish_query()
+    print("\nTesting /search with Clark's anemonefish appearance query...")
+    test_search_clarks_anemonefish_appearance()
+    print("\nTesting /image_captioning with Indian mackerel...")
+    test_image_captioning_indian_mackerel()
+    print("\nTesting /generation with lionfish appearance and chat history...")
+    test_generation_lionfish_appearance_with_chat_history()
+    print("\nTesting /image_identification with image...")
+    test_image_identification()
+    print("\nTesting /search_with_scientific_name with fish context...")
+    test_search_with_scientific_name("Arothron hispidus")
     print("\nTesting /image_identification with clownfish image...")
     test_image_identification_clownfish()
 
