@@ -50,8 +50,8 @@ def search():
         return jsonify({"input": text_input, "results": top_n_fish})
     except Exception as e:
         print(f"Error in search: {e}")
-        app.logger.error(f"Error in generation: {e}")
-        return jsonify(fallback_response("search", str(e))), 503
+        app.logger.error(f"Error in search: {e}")
+        return jsonify(fallback_response("search", f"error: {e} data {data}")), 503
 
 # This service might take a while to respond due to image processing
 @app.route("/image_captioning", methods=["POST"])
