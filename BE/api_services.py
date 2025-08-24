@@ -11,6 +11,7 @@ from ibm_botocore.client import Config
 import io
 import logging
 import base64
+import traceback
 
 
 load_dotenv()
@@ -50,6 +51,7 @@ def search():
         return jsonify({"input": text_input, "results": top_n_fish})
     except Exception as e:
         print(f"Error in search: {e}")
+        traceback.print_exc()
         app.logger.error(f"Error in search: {e}")
         return jsonify(fallback_response("search", f"error: {e} data {data}")), 503
 
