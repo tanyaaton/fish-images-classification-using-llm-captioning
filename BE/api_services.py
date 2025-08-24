@@ -83,6 +83,7 @@ def image_captioning():
             response = cos.get_object(Bucket='fish-image-bucket', Key=image)
             image_bytes = response['Body'].read()
         except Exception as cos_e:
+            traceback.print_exc()
             app.logger.error(f"COS fetch error: {cos_e}")
             return jsonify(fallback_response("image_captioning", f"COS fetch error: {cos_e}")), 503
 
@@ -91,6 +92,7 @@ def image_captioning():
             app.logger.info("Converting image to base64")
             pic_string = base64.b64encode(image_bytes).decode('utf-8')
         except Exception as b64_e:
+            traceback.print_exc()
             app.logger.error(f"Base64 conversion error: {b64_e}")
             return jsonify(fallback_response("image_captioning", f"Base64 error: {b64_e}")), 503
 
@@ -99,11 +101,13 @@ def image_captioning():
             app.logger.info("Calling WatsonX for image captioning")
             caption = get_fish_description_from_watsonxai(pic_string)
         except Exception as ai_e:
+            traceback.print_exc()
             app.logger.error(f"WatsonX error: {ai_e}")
             return jsonify(fallback_response("image_captioning", f"WatsonX error: {ai_e}")), 503
 
         return jsonify({"caption": caption})
     except Exception as e:
+        traceback.print_exc()
         app.logger.error(f"Unknown error in image_captioning: {e}")
         return jsonify(fallback_response("image_captioning", str(e))), 503
 
@@ -134,6 +138,7 @@ def image_identification():
             response = cos.get_object(Bucket='fish-image-bucket', Key=image)
             image_bytes = response['Body'].read()
         except Exception as cos_e:
+            traceback.print_exc()
             app.logger.error(f"COS fetch error: {cos_e}")
             return jsonify(fallback_response("image_captioning", f"COS fetch error: {cos_e}")), 503
 
@@ -142,6 +147,7 @@ def image_identification():
             app.logger.info("Converting image to base64")
             pic_string = base64.b64encode(image_bytes).decode('utf-8')
         except Exception as b64_e:
+            traceback.print_exc()
             app.logger.error(f"Base64 conversion error: {b64_e}")
             return jsonify(fallback_response("image_captioning", f"Base64 error: {b64_e}")), 503
 
@@ -150,11 +156,13 @@ def image_identification():
             app.logger.info("Calling WatsonX for image captioning")
             json_result = get_json_generated_image_details(pic_string)
         except Exception as ai_e:
+            traceback.print_exc()
             app.logger.error(f"WatsonX error: {ai_e}")
             return jsonify(fallback_response("image_captioning", f"WatsonX error: {ai_e}")), 503
 
         return json_result
     except Exception as e:
+        traceback.print_exc()
         app.logger.error(f"Unknown error in image_captioning: {e}")
         return jsonify(fallback_response("image_captioning", str(e))), 503
 
@@ -173,6 +181,7 @@ def generation():
         return jsonify({"response": response_text})
     except Exception as e:
         print(f"Error in image_captioning: {e}")
+        traceback.print_exc()
         app.logger.error(f"Error in generation: {e}")
         return jsonify(fallback_response("generation", str(e))), 503
     
@@ -202,6 +211,7 @@ def search_with_scientific_name():
         }), 200
     except Exception as e:
         print(f"Error in search_with_scientific_name: {e}")
+        traceback.print_exc()
         app.logger.error(f"Error in search_with_scientific_name: {e}")
         return jsonify({
             "scientific_name": scientific_name if 'scientific_name' in locals() else "",
