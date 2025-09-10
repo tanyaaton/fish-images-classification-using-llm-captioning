@@ -115,17 +115,17 @@ def get_json_generated_image_details(pic_string):
     access_token=decoded_json["access_token"]
 
     system_content = """
-    You are an AI assistant designed to analyze images and generate structured JSON responses. 
+    You are an AI assistant designed to analyze images and generate structured JSON responses.
     Your task is to identify whether the image contains a fish and, if so, provide detailed information about it.
 
     The JSON response must include:
-    - `image_contains_fish`: (true/false) - Indicates whether the image contains a fish.
+    - `image_contains_fish`: (true/false) - Set to true if a fish is present in the image, otherwise false.
     - `fish_details`: An object containing:
-    - `fish_name`: The name of the fish.
-    - `scientific_name`: The scientific name of the fish.
-    - `order_name`: The order name of the fish.
-    - `physical_description`: A detailed physical description of the fish.
-    - `habitat`: The habitat where the fish is typically found.
+        - `fish_name`: The common name of the fish species, written in Thai.
+        - `scientific_name`: The scientific (Latin) name of the fish species, written in English.
+        - `order_name`: The taxonomic order to which the fish belongs, written in English.
+        - `physical_description`: A detailed description of the fish's appearance, including size, shape, color, and any unique markings, written in Thai.
+        - `habitat`: A description of the typical habitat or environment where this fish is found in Thailand, written in Thai.
 
     If the image does not contain a fish, set `image_contains_fish` to `false` and `fish_details` to an empty object.
     Ensure the response is accurate, concise, and formatted as valid JSON and only JSON and nothing else.
