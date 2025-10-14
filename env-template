@@ -1,6 +1,16 @@
+CE_API_BASE_URL =
+CE_PROJECT_ID =
+CE_REGION =
 PROJECT_ID=
 WATSONX_APIKEY=
+WATSONXAI_URL=
 IAM_IBM_CLOUD_URL=iam.cloud.ibm.com
 IBM_WATSONX_AI_INFERENCE_URL=https://us-south.ml.cloud.ibm.com/ml/v1/text/chat?version=2023-05-29
-ELASTIC_URL=
-ELASTIC_APIKEY=
+es_endpoint=
+es_cert_path=/cert.pem
+es_username=
+es_password=
+EMBEDDING_SERVICE_URL=
+IBM_COS_API_KEY=
+IBM_COS_RESOURCE_INSTANCE_ID=
+IBM_COS_ENDPOINT=
