@@ -179,4 +179,3 @@ if __name__ == "__main__":
     # test_search_with_scientific_name("Arothron hispidus")
     # print("\nTesting /image_identification with clownfish image...")
     # test_image_identification_clownfish()
-

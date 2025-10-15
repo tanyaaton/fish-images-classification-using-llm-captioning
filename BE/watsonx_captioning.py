@@ -207,4 +207,3 @@ def get_json_generated_image_details(pic_string):
         return json_data
     except json.JSONDecodeError as e:
         raise ValueError(f"Invalid JSON response: {e} returned: {json_string}")
-
