@@ -26,10 +26,10 @@ jobs:
       matrix:
         context:
           - path: BE
-            image: us.icr.io/${{ secrets.IBM_CLOUD_RG }}-cr/fish-image-classify:latest
+            image_name: fish-image-classify
             app_name: fish-image-classify
           - path: snowflake-embedding
-            image: us.icr.io/${{ secrets.IBM_CLOUD_RG }}-cr/snowflake-embedding-image:latest
+            image_name: snowflake-embedding-image
             app_name: snowflake-embedding
     steps:
       - name: Checkout code
@@ -70,13 +70,19 @@ jobs:
         run: |
           ibmcloud ce project select --id "${{ secrets.IBM_CLOUD_PROJECT }}"
 
+      - name: Set image name
+        id: image
+        run: |
+          IMAGE_FULL="us.icr.io/${{ secrets.IBM_CLOUD_RG }}-cr/${{ matrix.context.image_name }}:latest"
+          echo "full=$IMAGE_FULL" >> $GITHUB_OUTPUT
+
       - name: Build Docker image
         run: |
-          docker build -t ${{ matrix.context.image }} ${{ matrix.context.path }}
+          docker build -t ${{ steps.image.outputs.full }} ${{ matrix.context.path }}
 
       - name: Push Docker image
         run: |
-          docker push ${{ matrix.context.image }}
+          docker push ${{ steps.image.outputs.full }}
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
@@ -84,7 +90,7 @@ jobs:
       - name: Deploy or Update Code Engine App
         env:
           app_name: ${{ matrix.context.app_name }}
-          image_full: ${{ matrix.context.image }}
+          image_full: ${{ steps.image.outputs.full }}
         run: |
           echo "APP NAME = $app_name"
           echo "IMAGE FULL = $image_full"
