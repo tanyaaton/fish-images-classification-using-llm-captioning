@@ -186,4 +186,3 @@ You can test your Elasticsearch connection using Postman:
 - Ensure all region settings are consistent across your services
 
 
-
