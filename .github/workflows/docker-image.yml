@@ -26,10 +26,10 @@ jobs:
       matrix:
         context:
           - path: BE
-            image: us.icr.io/itz-watson-apps-q4mjqj3a-cr/fish-image-classify:latest
+            image: us.icr.io/${{ secrets.IBM_CLOUD_RG }}-cr/fish-image-classify:latest
             app_name: fish-image-classify
           - path: snowflake-embedding
-            image: us.icr.io/itz-watson-apps-q4mjqj3a-cr/snowflake-embedding-image:latest
+            image: us.icr.io/${{ secrets.IBM_CLOUD_RG }}-cr/snowflake-embedding-image:latest
             app_name: snowflake-embedding
     steps:
       - name: Checkout code
