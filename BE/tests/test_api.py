@@ -10,7 +10,7 @@ import json
 
 # Example chat history format
 chat_history_example = [
-    {"role": "user", "content": "What type of fish is this?"},
+    {"role": "user", "content": "What species of fish is this?"},
     {"role": "assistant", "content": "Based on the information provided, this appears to be a Grouper fish, specifically from the Serranidae family."},
     {"role": "user", "content": "What does it eat?"}
 ]
